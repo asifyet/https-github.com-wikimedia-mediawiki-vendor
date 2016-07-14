@@ -2,5 +2,5 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/vendor.git
-defaultbranch=master
+defaultbranch=fundraising/REL1_27
 defaultrebase=0
