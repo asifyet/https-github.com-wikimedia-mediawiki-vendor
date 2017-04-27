@@ -254,6 +254,16 @@ $demoContainer->appendContent( new OOUI\FieldsetLayout( [
 				'align' => 'top'
 			]
 		),
+		new OOUI\FieldLayout(
+			new OOUI\ButtonWidget( [
+				'label' => 'AccessKeyed',
+				'accessKey' => 'k',
+			] ),
+			[
+				'label' => "ButtonWidget (with accesskey k)\xE2\x80\x8E",
+				'align' => 'top'
+			]
+		)
 	]
 ] ) );
 $demoContainer->appendContent( new OOUI\FieldsetLayout( [
@@ -455,6 +465,16 @@ $demoContainer->appendContent( new OOUI\FieldsetLayout( [
 			] ),
 			[
 				'label' => "TextInputWidget (disabled)\xE2\x80\x8E",
+				'align' => 'top'
+			]
+		),
+		new OOUI\FieldLayout(
+			new OOUI\TextInputWidget( [
+				'value' => 'Accesskey A',
+				'accessKey' => 'a'
+			] ),
+			[
+				'label' => "TextInputWidget (with Accesskey)\xE2\x80\x8E",
 				'align' => 'top'
 			]
 		),
@@ -692,36 +712,6 @@ $demoContainer->appendContent( new OOUI\FieldsetLayout( [
 			[
 				'align' => 'top',
 				'label' => "ButtonInputWidget (frameless, using <input>)\xE2\x80\x8E"
-			]
-		),
-		new OOUI\FieldLayout(
-			new OOUI\ButtonWidget( [
-				'label' => 'Accesskey: H',
-				'accessKey' => 'h'
-			] ),
-			[
-				'label' => "ButtonWidget (with accesskey)\xE2\x80\x8E",
-				'align' => 'top'
-			]
-		),
-		new OOUI\FieldLayout(
-			new OOUI\ButtonInputWidget( [
-				'label' => 'Accesskey: I',
-				'accessKey' => 'i'
-			] ),
-			[
-				'label' => "ButtonInputWidget (with accesskey)\xE2\x80\x8E",
-				'align' => 'top'
-			]
-		),
-		new OOUI\FieldLayout(
-			new OOUI\TextInputWidget( [
-				'value' => 'Accesskey: S',
-				'accessKey' => 's'
-			] ),
-			[
-				'label' => "TextInputWidget (with accesskey)\xE2\x80\x8E",
-				'align' => 'top'
 			]
 		)
 	]
