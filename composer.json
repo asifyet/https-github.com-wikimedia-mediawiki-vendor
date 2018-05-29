@@ -8,79 +8,10 @@
 		"vendor-dir": "."
 	},
 	"prefer-stable": true,
-	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"name": "ruflin/elastica",
-				"version": "5.3.0",
-				"dist": {
-					"url": "https://github.com/ruflin/Elastica/archive/5.3.0.zip",
-					"type": "zip"
-				},
-				"source": {
-					"url": "https://github.com/ruflin/Elastica.git",
-					"type": "git",
-					"reference": "tags/5.3.0"
-				},
-				"autoload": {
-					"psr-4": {
-						"Elastica\\": "lib/Elastica/"
-					}
-				},
-				"require": {
-					"php": ">=5.5.0",
-					"elasticsearch/elasticsearch": "5.3.0"
-				}
-			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "elasticsearch/elasticsearch",
-				"version": "5.3.0",
-				"dist": {
-					"url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/50e5b1c63db68839b8acc1f4766769570a27a448",
-					"type": "zip"
-				},
-				"source": {
-					"url": "https://github.com/elastic/elasticsearch-php.git",
-					"type": "git",
-					"reference": "tags/v5.3.0"
-				},
-				"require": {
-					"php": ">=5.5.0"
-				},
-				"autoload": {
-					"psr-4": {
-						"Elasticsearch\\": "src/Elasticsearch/"
-					}
-				}
-			}
-		}
-	],
 	"require": {
 		"composer/semver": "1.4.2",
 		"cssjanus/cssjanus": "1.2.0",
-		"data-values/common": "0.4.1",
-		"data-values/data-values": "1.1.1",
-		"data-values/geo": "2.1.1",
-		"data-values/interfaces": "0.2.5",
-		"data-values/number": "0.10.0",
-		"data-values/serialization": "1.2.2",
-		"data-values/time": "0.8.6",
-		"diff/diff": "2.3.0",
-		"dnoegel/php-xdg-base-dir": "0.1",
-		"firebase/php-jwt": "4.0.0",
-		"jakub-onderka/php-console-color": "0.1",
-		"jakub-onderka/php-console-highlighter": "0.3.2",
-		"james-heinrich/getid3": "1.9.14",
-		"justinrainbow/json-schema": "5.2.6",
 		"liuggio/statsd-php-client": "1.0.18",
-		"monolog/monolog": "1.22.1",
-		"mustangostang/spyc": "0.6.2",
-		"nikic/php-parser": "3.0.6",
-		"nmred/kafka-php": "0.1.5",
 		"oojs/oojs-ui": "0.26.4",
 		"oyejorge/less.php": "1.7.0.14",
 		"pear/console_getopt": "1.4.1",
@@ -92,32 +23,15 @@
 		"pear/pear-core-minimal": "1.10.3",
 		"pear/pear_exception": "1.0.0",
 		"php": ">=5.5.9",
-		"pimple/pimple": "3.0.2",
 		"psr/log": "1.0.2",
-		"psy/psysh": "0.8.11",
-		"ruflin/elastica": "5.3.0",
-		"serialization/serialization": "4.0.0",
-		"stil/gd-text":  "1.0.0",
-		"symfony/console": "3.3.13",
-		"symfony/debug": "3.3.13",
-		"symfony/polyfill-mbstring": "1.6",
-		"symfony/var-dumper": "3.3.13",
-		"wikibase/data-model": "7.3.0",
-		"wikibase/data-model-serialization": "2.7.0",
-		"wikibase/data-model-services": "3.9.0",
-		"wikibase/internal-serialization": "2.7.0",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/at-ease": "1.2.0",
-		"wikimedia/avro": "1.8.0",
 		"wikimedia/base-convert": "1.0.1",
 		"wikimedia/cdb": "1.4.1",
 		"wikimedia/cldr-plural-rule-parser": "1.0.0",
 		"wikimedia/composer-merge-plugin": "1.4.1",
-		"wikimedia/css-sanitizer": "1.0.6",
-		"wikimedia/equivset": "1.3.0",
 		"wikimedia/html-formatter": "1.0.2",
 		"wikimedia/ip-set": "1.2.0",
-		"wikimedia/lucene-explain-parser": "1.0.0",
 		"wikimedia/object-factory": "1.0.0",
 		"wikimedia/php-session-serializer": "1.0.6",
 		"wikimedia/purtle": "1.0.7",
@@ -126,7 +40,6 @@
 		"wikimedia/running-stat": "1.2.1",
 		"wikimedia/scoped-callback": "1.0.0",
 		"wikimedia/testing-access-wrapper": "1.0.0",
-		"wikimedia/textcat": "1.2.0",
 		"wikimedia/timestamp": "1.0.0",
 		"wikimedia/utfnormal": "2.0.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
