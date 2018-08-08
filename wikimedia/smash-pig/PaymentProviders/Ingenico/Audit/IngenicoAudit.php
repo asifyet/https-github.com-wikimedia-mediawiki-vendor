@@ -1,0 +1,275 @@
+<?php namespace SmashPig\PaymentProviders\Ingenico\Audit;
+
+use DOMElement;
+use RuntimeException;
+use SmashPig\Core\DataFiles\AuditParser;
+use SmashPig\Core\Logging\Logger;
+use SmashPig\Core\UtcDate;
+use SmashPig\PaymentProviders\Ingenico\ReferenceData;
+use XMLReader;
+
+class IngenicoAudit implements AuditParser {
+
+	protected $fileData;
+
+	protected $donationMap = [
+		'PaymentAmount' => 'gross',
+		'IPAddressCustomer' => 'user_ip',
+		'BillingFirstname' => 'first_name',
+		'BillingSurname' => 'last_name',
+		'BillingStreet' => 'street_address',
+		'BillingCity' => 'city',
+		'ZipCode' => 'postal_code',
+		'BillingCountryCode' => 'country',
+		'BillingEmail' => 'email',
+		'AdditionalReference' => 'invoice_id',
+		'PaymentProductId' => 'gc_product_id',
+		'OrderID' => 'order_id',
+		'MerchantID' => 'merchant_id',
+		// Ingenico recurring donations all have the same OrderID
+		// We can only tell them apart by the EffortID, which we
+		// might as well normalize to 'installment'.
+		'EffortID' => 'installment',
+		'AttemptID' => 'attempt_id',
+		'PaymentCurrency' => 'currency',
+		'AmountLocal' => 'gross',
+		'TransactionDateTime' => 'date',
+	];
+
+	protected $refundMap = [
+		'DebitedAmount' => 'gross',
+		'AdditionalReference' => 'invoice_id',
+		'OrderID' => 'gateway_parent_id',
+		'MerchantID' => 'merchant_id',
+		'EffortID' => 'installment',
+		'AttemptID' => 'attempt_id',
+		'DebitedCurrency' => 'gross_currency',
+		'DateDue' => 'date',
+		// Order matters. Prefer TransactionDateTime if it is present.
+		'TransactionDateTime' => 'date',
+	];
+
+	protected $recordsWeCanDealWith = [
+		// Credit card item that has been processed, but not settled.
+		// We take these seriously.
+		// TODO: Why aren't we waiting for +ON (settled)?
+		'XON' => 'donation',
+		// Settled "Invoice Payment". Could be invoice, bt, rtbt, check,
+		// prepaid card, ew, cash
+		'+IP' => 'donation',
+		'-CB' => 'chargeback', // Credit card chargeback
+		'-CR' => 'refund', // Credit card refund
+		'+AP' => 'donation', // Direct Debit collected
+	];
+
+	public function parseFile( $path ) {
+		$this->fileData = [];
+		$unzippedFullPath = $this->getUnzippedFile( $path );
+
+		Logger::info( "Opening $unzippedFullPath with XMLReader" );
+		$reader = new XMLReader();
+		$reader->open( $unzippedFullPath );
+		Logger::info( "Processing" );
+		while ( $reader->read() ) {
+			if ( $reader->nodeType === XMLReader::ELEMENT && $reader->name == 'tns:DataRecord' ) {
+				$record = $reader->expand();
+				$this->parseRecord( $record );
+			}
+		}
+		$reader->close();
+		unlink( $unzippedFullPath );
+
+		return $this->fileData;
+	}
+
+	protected function parseRecord( DOMElement $recordNode ) {
+		$category = $recordNode->getElementsByTagName( 'Recordcategory' )
+			->item( 0 )->nodeValue;
+		$type = $recordNode->getElementsByTagName( 'Recordtype' )
+			->item( 0 )->nodeValue;
+
+		$compoundType = $category . $type;
+		if ( !array_key_exists( $compoundType, $this->recordsWeCanDealWith ) ) {
+			return;
+		}
+
+		// Hack to determine which API integration the txn came in on.
+		// Connect API transactions have EmailTypeIndicator among the
+		// CustomerData nodes, while older ones have IPAddressCustomer
+		// TODO: does this work for refunds?
+		$typeIndicator = $recordNode->getElementsByTagName( 'EmailTypeIndicator' );
+		if ( $typeIndicator->length === 0 ) {
+			$gateway = 'globalcollect';
+		} else {
+			$gateway = 'ingenico';
+		}
+
+		if ( $category === '-' ) {
+			$refundType = $this->recordsWeCanDealWith[$compoundType];
+			$record = $this->parseRefund( $recordNode, $refundType, $gateway );
+		} else {
+			$record = $this->parseDonation( $recordNode, $gateway );
+		}
+		$record['gateway'] = $gateway;
+		$record = $this->normalizeValues( $record );
+
+		$this->fileData[] = $record;
+	}
+
+	protected function parseDonation( DOMElement $recordNode, $gateway ) {
+		$record = $this->xmlToArray( $recordNode, $this->donationMap );
+		if ( $gateway === 'globalcollect' ) {
+			$record['gateway_txn_id'] = $record['order_id'];
+		} else {
+			$record['gateway_txn_id'] = $this->getConnectPaymentId( $record );
+		}
+		$record = $this->addPaymentMethod( $record );
+		if ( $record['installment'] > 1 ) {
+			$record['recurring'] = 1;
+			// If $record['installment'] == 1, we may have a normal one-time
+			// payment, or the first payment of a recurring donation.
+			// This logic is sufficient for WMF's purposes, because we're only
+			// using the 'recurring' flag parsed out of the audit file to make
+			// sure donations after the first one are correctly inserted rather
+			// than dropped as duplicates of the first donation.
+			// We'll determine the recurring-ness of donations where
+			// installment=1 when we parse our logs looking for the order type.
+		}
+		return $record;
+	}
+
+	protected function parseRefund( DOMElement $recordNode, $type, $gateway ) {
+		$record = $this->xmlToArray( $recordNode, $this->refundMap );
+		$record['type'] = $type;
+		if ( $gateway === 'globalcollect' ) {
+			if ( $record['installment'] < 0 ) {
+				// Refunds have negative EffortID. Weird.
+				// TODO: for refunds of recurring payments, determine whether the
+				// refund's EffortID is always the negative of the corresponding
+				// installment's EffortID. We want to know which one we refunded.
+				$record['installment'] = $record['installment'] * -1;
+				if ( $record['installment'] > 1 ) {
+					$record['gateway_parent_id'] .= '-' . $record['installment'];
+				}
+			}
+		} else {
+
+		}
+		// FIXME: Refund ID is the same as the parent transaction ID.
+		// That's not helpful...
+		$record['gateway_refund_id'] = $record['gateway_parent_id'];
+		return $record;
+	}
+
+	protected function xmlToArray( DOMElement $recordNode, $map ) {
+		$record = [];
+		foreach ( $map as $theirs => $ours ) {
+			foreach ( $recordNode->getElementsByTagName( $theirs ) as $recordItem ) {
+				$record[$ours] = $recordItem->nodeValue;  // there 'ya go: Normal already.
+			}
+		}
+		return $record;
+	}
+
+	/**
+	 * Adds our normalized payment_method and payment_submethod params based
+	 * on the codes that GC uses
+	 *
+	 * @param array $record The record from the wx file, in array format
+	 * @return array The $record param with our normal keys appended
+	 */
+	function addPaymentMethod( $record ) {
+		$normalized = ReferenceData::decodePaymentMethod(
+			$record['gc_product_id']
+		);
+		$record = array_merge( $record, $normalized );
+
+		unset( $record['gc_product_id'] );
+		return $record;
+	}
+
+	/**
+	 * @param string $path Path to original zipped file
+	 * @return string Path to unzipped file in working directory
+	 */
+	protected function getUnzippedFile( $path ) {
+		$zippedParts = explode( DIRECTORY_SEPARATOR, $path );
+		$zippedFilename = array_pop( $zippedParts );
+		// TODO keep unzipped files around?
+		$workingDirectory = tempnam( sys_get_temp_dir(), 'ingenico_audit' );
+		if ( file_exists( $workingDirectory ) ) {
+			unlink( $workingDirectory );
+		}
+		mkdir( $workingDirectory );
+		// whack the .gz on the end
+		$unzippedFilename = substr( $zippedFilename, 0, strlen( $zippedFilename ) - 3 );
+
+		$copiedZipPath = $workingDirectory . DIRECTORY_SEPARATOR . $zippedFilename;
+		copy( $path, $copiedZipPath );
+		if ( !file_exists( $copiedZipPath ) ) {
+			throw new RuntimeException(
+				"FILE PROBLEM: Trying to copy $path to $copiedZipPath " .
+				'for decompression, and something went wrong'
+			);
+		}
+
+		$unzippedFullPath = $workingDirectory . DIRECTORY_SEPARATOR . $unzippedFilename;
+		// decompress
+		Logger::info( "Gunzipping $copiedZipPath" );
+		// FIXME portability
+		$cmd = "gunzip -f $copiedZipPath";
+		exec( escapeshellcmd( $cmd ) );
+
+		// now check to make sure the file you expect actually exists
+		if ( !file_exists( $unzippedFullPath ) ) {
+			throw new RuntimeException(
+				'FILE PROBLEM: Something went wrong with decompressing WX file: ' .
+				"$cmd : $unzippedFullPath doesn't exist."
+			);
+		}
+		return $unzippedFullPath;
+	}
+
+	protected function getConnectPaymentId( $record ) {
+		$merchantId = str_pad(
+			$record['merchant_id'], 10, '0', STR_PAD_LEFT
+		);
+		$orderId = isset( $record['order_id'] ) ? $record['order_id'] :
+			$record['gateway_parent_id'];
+		$orderId = str_pad(
+			$orderId, 10, '0', STR_PAD_LEFT
+		);
+		$effortId = str_pad(
+			$record['installment'], 5, '0', STR_PAD_LEFT
+		);
+		$attemptId = str_pad(
+			$record['attempt_id'], 5, '0', STR_PAD_LEFT
+		);
+		return "$merchantId$orderId$effortId$attemptId";
+	}
+
+	/**
+	 * Normalize amounts, dates, and IDs to match everything else in SmashPig
+	 * FIXME: do this with transformers migrated in from DonationInterface
+	 *
+	 * @param array $record
+	 * @return array The record, with values normalized
+	 */
+	protected function normalizeValues( $record ) {
+		if ( isset( $record['gross'] ) ) {
+			$record['gross'] = $record['gross'] / 100;
+		}
+		if ( isset( $record['invoice_id'] ) ) {
+			$parts = explode( '.', $record['invoice_id'] );
+			$record['contribution_tracking_id'] = $parts[0];
+		}
+		if ( isset( $record['date'] ) ) {
+			$record['date'] = UtcDate::getUtcTimestamp( $record['date'] );
+		}
+		// Only used internally
+		if ( isset( $record['attempt_id'] ) ) {
+			unset( $record['attempt_id'] );
+		}
+		return $record;
+	}
+}

@@ -1,0 +1,12 @@
+.version-stamp
+
+# Configuration
+composer.phar
+config.php
+PublicHttp/.htaccess
+
+# IDE Tools
+.idea
+
+# Composer deps only on deployment branch
+vendor
