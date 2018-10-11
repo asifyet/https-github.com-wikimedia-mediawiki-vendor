@@ -151,10 +151,6 @@ class ComposerStaticInit_mediawiki_vendor
         ),
         'M' => 
         array (
-            'Mail_mimeDecode' => 
-            array (
-                0 => __DIR__ . '/..' . '/pear/mail_mime-decode',
-            ),
             'Mail' => 
             array (
                 0 => __DIR__ . '/..' . '/pear/mail',
@@ -419,7 +415,6 @@ class ComposerStaticInit_mediawiki_vendor
         'Mail_RFC822' => __DIR__ . '/..' . '/pear/mail/Mail/RFC822.php',
         'Mail_mail' => __DIR__ . '/..' . '/pear/mail/Mail/mail.php',
         'Mail_mime' => __DIR__ . '/..' . '/pear/mail_mime/Mail/mime.php',
-        'Mail_mimeDecode' => __DIR__ . '/..' . '/pear/mail_mime-decode/Mail/mimeDecode.php',
         'Mail_mimePart' => __DIR__ . '/..' . '/pear/mail_mime/Mail/mimePart.php',
         'Mail_mock' => __DIR__ . '/..' . '/pear/mail/Mail/mock.php',
         'Mail_null' => __DIR__ . '/..' . '/pear/mail/Mail/null.php',
