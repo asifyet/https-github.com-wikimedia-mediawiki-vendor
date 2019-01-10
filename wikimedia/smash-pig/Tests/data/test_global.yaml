@@ -37,6 +37,16 @@ data-store:
     refund:
         <<: *QUEUE
 
+    unsubscribe:
+        <<: *QUEUE
+
+    opt-in:
+        class: PHPQueue\Backend\PDO
+        constructor-parameters:
+            -
+                connection_string: 'sqlite::memory:'
+                queue: opt_in
+
     jobs-paypal:
         class: PHPQueue\Backend\PDO
         constructor-parameters:
@@ -50,6 +60,13 @@ data-store:
             -
                 connection_string: 'sqlite::memory:'
                 queue: jobs_adyen
+
+    jobs-amazon:
+        class: PHPQueue\Backend\PDO
+        constructor-parameters:
+            -
+                connection_string: 'sqlite::memory:'
+                queue: jobs_amazon
 
     jobs-ingenico:
         class: PHPQueue\Backend\PDO

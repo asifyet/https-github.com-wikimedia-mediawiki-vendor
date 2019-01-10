@@ -86,6 +86,7 @@ class PostalCodeTest extends \PHPUnit_Framework_TestCase
         return [
             ['BR', '02179-000'],
             ['BR', '02179000'],
+            ['CA', 'A1A 2B2'],
             ['GB', 'GIR 0AA'],
             ['GB', 'PR1 9LY'],
             ['US', '02179'],
@@ -95,6 +96,8 @@ class PostalCodeTest extends \PHPUnit_Framework_TestCase
             ['NL', '1012GX'],
             ['PT', '3660-606'],
             ['PT', '3660606'],
+            ['CO', '110231'],
+            ['KR', '03187'],
         ];
     }
 
@@ -123,12 +126,15 @@ class PostalCodeTest extends \PHPUnit_Framework_TestCase
         return [
             ['BR', '02179'],
             ['BR', '02179.000'],
+            ['CA', '1A1B2B'],
             ['GB', 'GIR 00A'],
             ['GB', 'GIR0AA'],
             ['GB', 'PR19LY'],
             ['US', '021 79'],
             ['YE', '02179'],
             ['PL', '99300'],
+            ['KR', '548940'],
+            ['KR', '548-940'],
         ];
     }
 }

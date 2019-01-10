@@ -6,6 +6,7 @@ class SubscriptionMessage extends Message {
 
 	public static function normalizeMessage( &$message, $ipnMessage ) {
 		$message['recurring'] = '1';
+		$message['gateway'] = 'paypal';
 
 		// Contact info
 		if ( $ipnMessage['txn_type'] === 'subscr_signup' || $ipnMessage['txn_type'] === 'subscr_payment' || $ipnMessage['txn_type'] === 'subscr_modify' ) {
@@ -44,16 +45,17 @@ class SubscriptionMessage extends Message {
 				}
 
 				if ( isset( $ipnMessage['subscr_date'] ) ) {
-					if ( $ipnMessage['txn_type'] == 'subscr_signup' ) {
-						$message['create_date'] = strtotime( $ipnMessage['subscr_date'] );
-						$message['start_date'] = strtotime( $ipnMessage['subscr_date'] );
-					} elseif ( $ipnMessage['txn_type'] == 'subscr_cancel' ) {
-						$message['cancel_date'] = strtotime( $ipnMessage['subscr_date'] );
-					}
+					$message['create_date'] = strtotime( $ipnMessage['subscr_date'] );
+					$message['start_date'] = strtotime( $ipnMessage['subscr_date'] );
 					if ( !isset( $message['date'] ) ) {
 						$message['date'] = strtotime( $ipnMessage['subscr_date'] );
 					}
 				}
+				self::mergePendingDetails( $message );
+				break;
+
+			case 'subscr_payment':
+				self::mergePendingDetails( $message );
 				break;
 
 			case 'subscr_modify':
@@ -67,10 +69,18 @@ class SubscriptionMessage extends Message {
 					$message['failure_retry_date'] = strtotime( $ipnMessage['failure_retry_date'] );
 				}
 				break;
+
+			case 'subscr_cancel':
+				if ( isset( $ipnMessage['subscr_date'] ) ) {
+					$message['cancel_date'] = strtotime( $ipnMessage['subscr_date'] );
+					if ( !isset( $message['date'] ) ) {
+						$message['date'] = strtotime( $ipnMessage['subscr_date'] );
+					}
+				}
+				break;
+
 			default:
 		}
-
-		$message['gateway'] = 'paypal';
 
 		if ( !isset( $message['date'] ) ) {
 			$message['date'] = time();
