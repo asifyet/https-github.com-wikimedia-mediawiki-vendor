@@ -10,14 +10,14 @@ class ComposerStaticInit_mediawiki_vendor
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
-        '23842c11409ef125f7fd90c8b167279e' => __DIR__ . '/..' . '/wikimedia/at-ease/src/MediaWiki/Functions.php',
-        'eccc0347283a01e62f5536bcf76b6e62' => __DIR__ . '/..' . '/wikimedia/at-ease/src/Wikimedia/Functions.php',
         '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
         'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
+        '23842c11409ef125f7fd90c8b167279e' => __DIR__ . '/..' . '/wikimedia/at-ease/src/MediaWiki/Functions.php',
+        'eccc0347283a01e62f5536bcf76b6e62' => __DIR__ . '/..' . '/wikimedia/at-ease/src/Wikimedia/Functions.php',
+        'c3f7f0e81464740a933532e81fa26cc7' => __DIR__ . '/..' . '/wikimedia/base-convert/src/Functions.php',
         '4d945db823e5f6ca6dd83ad1f5fbcc43' => __DIR__ . '/..' . '/wikimedia/relpath/src/RelPath/RelPath.php',
         '6513700b70192b7dfd0e5e9fc8082cf3' => __DIR__ . '/..' . '/wikimedia/relpath/src/Wikimedia/RelPath.php',
         'c50606d667a3fde2b80a955639479d3d' => __DIR__ . '/..' . '/wikimedia/timestamp/src/defines.php',
-        'c3f7f0e81464740a933532e81fa26cc7' => __DIR__ . '/..' . '/wikimedia/base-convert/src/Functions.php',
         '38db717deddb215de53e36c2c0bc9e7e' => __DIR__ . '/../..' . '/includes/compat/Timestamp.php',
         'd336c1eb5013890282b9777aa7fc7478' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/WmfFramework.php',
     );
@@ -249,8 +249,8 @@ class ComposerStaticInit_mediawiki_vendor
         array (
             'Net' => 
             array (
-                0 => __DIR__ . '/..' . '/pear/net_socket',
-                1 => __DIR__ . '/..' . '/pear/net_smtp',
+                0 => __DIR__ . '/..' . '/pear/net_smtp',
+                1 => __DIR__ . '/..' . '/pear/net_socket',
             ),
         ),
         'M' => 
@@ -572,6 +572,7 @@ class ComposerStaticInit_mediawiki_vendor
         'IngenicoGatewayResult' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/ingenico_resultswitcher.body.php',
         'IngenicoGetOrderStatusMaintenance' => __DIR__ . '/../..' . '/extensions/DonationInterface/globalcollect_gateway/scripts/get_orderstatus.php',
         'IngenicoLanguage' => __DIR__ . '/../..' . '/extensions/DonationInterface/globalcollect_gateway/IngenicoLanguage.php',
+        'IngenicoLocale' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/IngenicoLocale.php',
         'IngenicoMethodCodec' => __DIR__ . '/../..' . '/extensions/DonationInterface/globalcollect_gateway/IngenicoMethodCodec.php',
         'IngenicoOrphanAdapter' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/orphan.adapter.php',
         'IngenicoOrphanRectifier' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/IngenicoOrphanRectifier.php',

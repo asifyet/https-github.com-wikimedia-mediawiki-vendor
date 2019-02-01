@@ -272,6 +272,7 @@ return array(
     'IngenicoGatewayResult' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/ingenico_resultswitcher.body.php',
     'IngenicoGetOrderStatusMaintenance' => $baseDir . '/extensions/DonationInterface/globalcollect_gateway/scripts/get_orderstatus.php',
     'IngenicoLanguage' => $baseDir . '/extensions/DonationInterface/globalcollect_gateway/IngenicoLanguage.php',
+    'IngenicoLocale' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/IngenicoLocale.php',
     'IngenicoMethodCodec' => $baseDir . '/extensions/DonationInterface/globalcollect_gateway/IngenicoMethodCodec.php',
     'IngenicoOrphanAdapter' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/orphan.adapter.php',
     'IngenicoOrphanRectifier' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/IngenicoOrphanRectifier.php',
