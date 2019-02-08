@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2009-2012 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,8 +12,6 @@
 /**
  * Represents a template filter.
  *
- * @final
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class Twig_SimpleFilter
@@ -21,13 +19,13 @@ class Twig_SimpleFilter
     protected $name;
     protected $callable;
     protected $options;
-    protected $arguments = [];
+    protected $arguments = array();
 
-    public function __construct($name, $callable, array $options = [])
+    public function __construct($name, $callable, array $options = array())
     {
         $this->name = $name;
         $this->callable = $callable;
-        $this->options = array_merge([
+        $this->options = array_merge(array(
             'needs_environment' => false,
             'needs_context' => false,
             'is_variadic' => false,
@@ -38,7 +36,7 @@ class Twig_SimpleFilter
             'node_class' => 'Twig_Node_Expression_Filter',
             'deprecated' => false,
             'alternative' => null,
-        ], $options);
+        ), $options);
     }
 
     public function getName()
@@ -117,5 +115,3 @@ class Twig_SimpleFilter
         return $this->options['alternative'];
     }
 }
-
-class_alias('Twig_SimpleFilter', 'Twig\TwigFilter', false);

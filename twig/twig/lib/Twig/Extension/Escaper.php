@@ -3,20 +3,18 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2009 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- */
-
-/**
- * @final
  */
 class Twig_Extension_Escaper extends Twig_Extension
 {
     protected $defaultStrategy;
 
     /**
+     * Constructor.
+     *
      * @param string|false|callable $defaultStrategy An escaping strategy
      *
      * @see setDefaultStrategy()
@@ -28,26 +26,26 @@ class Twig_Extension_Escaper extends Twig_Extension
 
     public function getTokenParsers()
     {
-        return [new Twig_TokenParser_AutoEscape()];
+        return array(new Twig_TokenParser_AutoEscape());
     }
 
     public function getNodeVisitors()
     {
-        return [new Twig_NodeVisitor_Escaper()];
+        return array(new Twig_NodeVisitor_Escaper());
     }
 
     public function getFilters()
     {
-        return [
-            new Twig_SimpleFilter('raw', 'twig_raw_filter', ['is_safe' => ['all']]),
-        ];
+        return array(
+            new Twig_SimpleFilter('raw', 'twig_raw_filter', array('is_safe' => array('all'))),
+        );
     }
 
     /**
      * Sets the default strategy to use when not defined by the user.
      *
      * The strategy can be a valid PHP callback that takes the template
-     * name as an argument and returns the strategy to use.
+     * "filename" as an argument and returns the strategy to use.
      *
      * @param string|false|callable $defaultStrategy An escaping strategy
      */
@@ -61,13 +59,7 @@ class Twig_Extension_Escaper extends Twig_Extension
         }
 
         if ('filename' === $defaultStrategy) {
-            @trigger_error('Using "filename" as the default strategy is deprecated since version 1.27. Use "name" instead.', E_USER_DEPRECATED);
-
-            $defaultStrategy = 'name';
-        }
-
-        if ('name' === $defaultStrategy) {
-            $defaultStrategy = ['Twig_FileExtensionEscapingStrategy', 'guess'];
+            $defaultStrategy = array('Twig_FileExtensionEscapingStrategy', 'guess');
         }
 
         $this->defaultStrategy = $defaultStrategy;
@@ -76,16 +68,16 @@ class Twig_Extension_Escaper extends Twig_Extension
     /**
      * Gets the default strategy to use when not defined by the user.
      *
-     * @param string $name The template name
+     * @param string $filename The template "filename"
      *
      * @return string|false The default strategy to use for the template
      */
-    public function getDefaultStrategy($name)
+    public function getDefaultStrategy($filename)
     {
         // disable string callables to avoid calling a function named html or js,
         // or any other upcoming escaping strategy
         if (!is_string($this->defaultStrategy) && false !== $this->defaultStrategy) {
-            return call_user_func($this->defaultStrategy, $name);
+            return call_user_func($this->defaultStrategy, $filename);
         }
 
         return $this->defaultStrategy;
@@ -108,5 +100,3 @@ function twig_raw_filter($string)
 {
     return $string;
 }
-
-class_alias('Twig_Extension_Escaper', 'Twig\Extension\EscaperExtension', false);

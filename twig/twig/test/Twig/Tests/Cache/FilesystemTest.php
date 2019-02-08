@@ -11,7 +11,7 @@
 
 require_once dirname(dirname(__FILE__)).'/FilesystemHelper.php';
 
-class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
+class Twig_Tests_Cache_FilesystemTest extends PHPUnit_Framework_TestCase
 {
     private $classname;
     private $directory;
@@ -65,13 +65,13 @@ class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFileNotExists($key);
-        $this->assertFileNotExists($this->directory);
+        $this->assertFalse(file_exists($key));
+        $this->assertFalse(file_exists($this->directory));
 
         $this->cache->write($key, $content);
 
-        $this->assertFileExists($this->directory);
-        $this->assertFileExists($key);
+        $this->assertTrue(file_exists($this->directory));
+        $this->assertTrue(file_exists($key));
         $this->assertSame(file_get_contents($key), $content);
     }
 
@@ -88,7 +88,7 @@ class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFileNotExists($key);
+        $this->assertFalse(file_exists($key));
 
         // Create read-only root directory.
         @mkdir($this->directory, 0555, true);
@@ -110,12 +110,12 @@ class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFileNotExists($key);
+        $this->assertFalse(file_exists($key));
 
         // Create root directory.
         @mkdir($this->directory, 0777, true);
         // Create read-only subdirectory.
-        @mkdir($this->directory.'/cache', 0555);
+        @mkdir($this->directory.'/cache' , 0555);
         $this->assertTrue(is_dir($this->directory.'/cache'));
 
         $this->cache->write($key, $content);
@@ -130,7 +130,7 @@ class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFileNotExists($key);
+        $this->assertFalse(file_exists($key));
 
         // Create a directory in the place of the cache file.
         @mkdir($key, 0777, true);
@@ -174,20 +174,20 @@ class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
     {
         $pattern = '#a/b/[a-zA-Z0-9]+/[a-zA-Z0-9]+.php$#';
 
-        return [
-            [$pattern, 'a/b'],
-            [$pattern, 'a/b/'],
-            [$pattern, 'a/b\\'],
-            [$pattern, 'a/b\\/'],
-            [$pattern, 'a/b\\//'],
-            ['#/'.substr($pattern, 1), '/a/b'],
-        ];
+        return array(
+            array($pattern, 'a/b'),
+            array($pattern, 'a/b/'),
+            array($pattern, 'a/b\\'),
+            array($pattern, 'a/b\\/'),
+            array($pattern, 'a/b\\//'),
+            array('#/'.substr($pattern, 1), '/a/b'),
+        );
     }
 
     private function generateSource()
     {
-        return strtr('<?php class {{classname}} {}', [
+        return strtr('<?php class {{classname}} {}', array(
             '{{classname}}' => $this->classname,
-        ]);
+        ));
     }
 }

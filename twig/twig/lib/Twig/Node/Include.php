@@ -3,8 +3,8 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
- * (c) Armin Ronacher
+ * (c) 2009 Fabien Potencier
+ * (c) 2009 Armin Ronacher
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,12 +19,7 @@ class Twig_Node_Include extends Twig_Node implements Twig_NodeOutputInterface
 {
     public function __construct(Twig_Node_Expression $expr, Twig_Node_Expression $variables = null, $only = false, $ignoreMissing = false, $lineno, $tag = null)
     {
-        $nodes = ['expr' => $expr];
-        if (null !== $variables) {
-            $nodes['variables'] = $variables;
-        }
-
-        parent::__construct($nodes, ['only' => (bool) $only, 'ignore_missing' => (bool) $ignoreMissing], $lineno, $tag);
+        parent::__construct(array('expr' => $expr, 'variables' => $variables), array('only' => (bool) $only, 'ignore_missing' => (bool) $ignoreMissing), $lineno, $tag);
     }
 
     public function compile(Twig_Compiler $compiler)
@@ -64,17 +59,17 @@ class Twig_Node_Include extends Twig_Node implements Twig_NodeOutputInterface
              ->write('$this->loadTemplate(')
              ->subcompile($this->getNode('expr'))
              ->raw(', ')
-             ->repr($this->getTemplateName())
+             ->repr($compiler->getFilename())
              ->raw(', ')
-             ->repr($this->getTemplateLine())
+             ->repr($this->getLine())
              ->raw(')')
          ;
     }
 
     protected function addTemplateArguments(Twig_Compiler $compiler)
     {
-        if (!$this->hasNode('variables')) {
-            $compiler->raw(false === $this->getAttribute('only') ? '$context' : '[]');
+        if (null === $this->getNode('variables')) {
+            $compiler->raw(false === $this->getAttribute('only') ? '$context' : 'array()');
         } elseif (false === $this->getAttribute('only')) {
             $compiler
                 ->raw('array_merge($context, ')
@@ -86,5 +81,3 @@ class Twig_Node_Include extends Twig_Node implements Twig_NodeOutputInterface
         }
     }
 }
-
-class_alias('Twig_Node_Include', 'Twig\Node\IncludeNode', false);

@@ -28,8 +28,7 @@ Slim, Yii, Laravel, Codeigniter and Kohana — just to name a few.
 Prerequisites
 -------------
 
-Twig needs at least **PHP 5.2.7** to run. As of 1.34, the minimum requirement
-was bumped to **PHP 5.3.3**.
+Twig needs at least **PHP 5.2.7** to run.
 
 Installation
 ------------
@@ -55,12 +54,12 @@ This section gives you a brief introduction to the PHP API for Twig.
 
     require_once '/path/to/vendor/autoload.php';
 
-    $loader = new Twig_Loader_Array([
+    $loader = new Twig_Loader_Array(array(
         'index' => 'Hello {{ name }}!',
-    ]);
+    ));
     $twig = new Twig_Environment($loader);
 
-    echo $twig->render('index', ['name' => 'Fabien']);
+    echo $twig->render('index', array('name' => 'Fabien'));
 
 Twig uses a loader (``Twig_Loader_Array``) to locate templates, and an
 environment (``Twig_Environment``) to store the configuration.
@@ -72,11 +71,11 @@ As templates are generally stored on the filesystem, Twig also comes with a
 filesystem loader::
 
     $loader = new Twig_Loader_Filesystem('/path/to/templates');
-    $twig = new Twig_Environment($loader, [
+    $twig = new Twig_Environment($loader, array(
         'cache' => '/path/to/compilation_cache',
-    ]);
+    ));
 
-    echo $twig->render('index.html', ['name' => 'Fabien']);
+    echo $twig->render('index.html', array('name' => 'Fabien'));
 
 .. tip::
 

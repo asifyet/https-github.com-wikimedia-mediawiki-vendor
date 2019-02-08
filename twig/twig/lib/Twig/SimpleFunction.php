@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2010-2012 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,8 +12,6 @@
 /**
  * Represents a template function.
  *
- * @final
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class Twig_SimpleFunction
@@ -21,13 +19,13 @@ class Twig_SimpleFunction
     protected $name;
     protected $callable;
     protected $options;
-    protected $arguments = [];
+    protected $arguments = array();
 
-    public function __construct($name, $callable, array $options = [])
+    public function __construct($name, $callable, array $options = array())
     {
         $this->name = $name;
         $this->callable = $callable;
-        $this->options = array_merge([
+        $this->options = array_merge(array(
             'needs_environment' => false,
             'needs_context' => false,
             'is_variadic' => false,
@@ -36,7 +34,7 @@ class Twig_SimpleFunction
             'node_class' => 'Twig_Node_Expression_Function',
             'deprecated' => false,
             'alternative' => null,
-        ], $options);
+        ), $options);
     }
 
     public function getName()
@@ -84,7 +82,7 @@ class Twig_SimpleFunction
             return call_user_func($this->options['is_safe_callback'], $functionArgs);
         }
 
-        return [];
+        return array();
     }
 
     public function isVariadic()
@@ -107,5 +105,3 @@ class Twig_SimpleFunction
         return $this->options['alternative'];
     }
 }
-
-class_alias('Twig_SimpleFunction', 'Twig\TwigFunction', false);

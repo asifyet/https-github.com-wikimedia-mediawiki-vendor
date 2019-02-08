@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2010 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -23,15 +23,15 @@
 abstract class Twig_Function implements Twig_FunctionInterface, Twig_FunctionCallableInterface
 {
     protected $options;
-    protected $arguments = [];
+    protected $arguments = array();
 
-    public function __construct(array $options = [])
+    public function __construct(array $options = array())
     {
-        $this->options = array_merge([
+        $this->options = array_merge(array(
             'needs_environment' => false,
             'needs_context' => false,
             'callable' => null,
-        ], $options);
+        ), $options);
     }
 
     public function setArguments($arguments)
@@ -64,7 +64,7 @@ abstract class Twig_Function implements Twig_FunctionInterface, Twig_FunctionCal
             return call_user_func($this->options['is_safe_callback'], $functionArgs);
         }
 
-        return [];
+        return array();
     }
 
     public function getCallable()

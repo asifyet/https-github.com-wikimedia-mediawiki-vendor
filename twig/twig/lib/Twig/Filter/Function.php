@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2009 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,7 +24,7 @@ class Twig_Filter_Function extends Twig_Filter
 {
     protected $function;
 
-    public function __construct($function, array $options = [])
+    public function __construct($function, array $options = array())
     {
         $options['callable'] = $function;
 

@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2011 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,7 +24,7 @@ class Twig_Function_Node extends Twig_Function
 {
     protected $class;
 
-    public function __construct($class, array $options = [])
+    public function __construct($class, array $options = array())
     {
         parent::__construct($options);
 

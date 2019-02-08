@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2009 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,11 +22,11 @@ class Twig_Node_Macro extends Twig_Node
     {
         foreach ($arguments as $argumentName => $argument) {
             if (self::VARARGS_NAME === $argumentName) {
-                throw new Twig_Error_Syntax(sprintf('The argument "%s" in macro "%s" cannot be defined because the variable "%s" is reserved for arbitrary arguments.', self::VARARGS_NAME, $name, self::VARARGS_NAME), $argument->getTemplateLine());
+                throw new Twig_Error_Syntax(sprintf('The argument "%s" in macro "%s" cannot be defined because the variable "%s" is reserved for arbitrary arguments.', self::VARARGS_NAME, $name, self::VARARGS_NAME), $argument->getLine());
             }
         }
 
-        parent::__construct(['body' => $body, 'arguments' => $arguments], ['name' => $name], $lineno, $tag);
+        parent::__construct(array('body' => $body, 'arguments' => $arguments), array('name' => $name), $lineno, $tag);
     }
 
     public function compile(Twig_Compiler $compiler)
@@ -64,13 +64,13 @@ class Twig_Node_Macro extends Twig_Node
         ;
 
         $compiler
-            ->write("\$context = \$this->env->mergeGlobals([\n")
+            ->write("\$context = \$this->env->mergeGlobals(array(\n")
             ->indent()
         ;
 
         foreach ($this->getNode('arguments') as $name => $default) {
             $compiler
-                ->write('')
+                ->addIndentation()
                 ->string($name)
                 ->raw(' => $__'.$name.'__')
                 ->raw(",\n")
@@ -78,7 +78,7 @@ class Twig_Node_Macro extends Twig_Node
         }
 
         $compiler
-            ->write('')
+            ->addIndentation()
             ->string(self::VARARGS_NAME)
             ->raw(' => ')
         ;
@@ -91,14 +91,14 @@ class Twig_Node_Macro extends Twig_Node
                 ->repr($count)
                 ->raw(' ? array_slice(func_get_args(), ')
                 ->repr($count)
-                ->raw(") : [],\n")
+                ->raw(") : array(),\n")
             ;
         }
 
         $compiler
             ->outdent()
-            ->write("]);\n\n")
-            ->write("\$blocks = [];\n\n")
+            ->write("));\n\n")
+            ->write("\$blocks = array();\n\n")
             ->write("ob_start();\n")
             ->write("try {\n")
             ->indent()
@@ -121,5 +121,3 @@ class Twig_Node_Macro extends Twig_Node
         ;
     }
 }
-
-class_alias('Twig_Node_Macro', 'Twig\Node\MacroNode', false);

@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2010-2012 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,6 @@
 
 /**
  * Represents a template test.
- *
- * @final
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
@@ -22,18 +20,16 @@ class Twig_SimpleTest
     protected $callable;
     protected $options;
 
-    private $arguments = [];
-
-    public function __construct($name, $callable, array $options = [])
+    public function __construct($name, $callable, array $options = array())
     {
         $this->name = $name;
         $this->callable = $callable;
-        $this->options = array_merge([
+        $this->options = array_merge(array(
             'is_variadic' => false,
             'node_class' => 'Twig_Node_Expression_Test',
             'deprecated' => false,
             'alternative' => null,
-        ], $options);
+        ), $options);
     }
 
     public function getName()
@@ -70,16 +66,4 @@ class Twig_SimpleTest
     {
         return $this->options['alternative'];
     }
-
-    public function setArguments($arguments)
-    {
-        $this->arguments = $arguments;
-    }
-
-    public function getArguments()
-    {
-        return $this->arguments;
-    }
 }
-
-class_alias('Twig_SimpleTest', 'Twig\TwigTest', false);

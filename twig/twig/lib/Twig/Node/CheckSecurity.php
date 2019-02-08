@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2015 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -29,11 +29,11 @@ class Twig_Node_CheckSecurity extends Twig_Node
 
     public function compile(Twig_Compiler $compiler)
     {
-        $tags = $filters = $functions = [];
-        foreach (['tags', 'filters', 'functions'] as $type) {
+        $tags = $filters = $functions = array();
+        foreach (array('tags', 'filters', 'functions') as $type) {
             foreach ($this->{'used'.ucfirst($type)} as $name => $node) {
                 if ($node instanceof Twig_Node) {
-                    ${$type}[$name] = $node->getTemplateLine();
+                    ${$type}[$name] = $node->getLine();
                 } else {
                     ${$type}[$node] = null;
                 }
@@ -46,17 +46,17 @@ class Twig_Node_CheckSecurity extends Twig_Node
             ->write('$functions = ')->repr(array_filter($functions))->raw(";\n\n")
             ->write("try {\n")
             ->indent()
-            ->write("\$this->env->getExtension('Twig_Extension_Sandbox')->checkSecurity(\n")
+            ->write("\$this->env->getExtension('sandbox')->checkSecurity(\n")
             ->indent()
-            ->write(!$tags ? "[],\n" : "['".implode("', '", array_keys($tags))."'],\n")
-            ->write(!$filters ? "[],\n" : "['".implode("', '", array_keys($filters))."'],\n")
-            ->write(!$functions ? "[]\n" : "['".implode("', '", array_keys($functions))."']\n")
+            ->write(!$tags ? "array(),\n" : "array('".implode("', '", array_keys($tags))."'),\n")
+            ->write(!$filters ? "array(),\n" : "array('".implode("', '", array_keys($filters))."'),\n")
+            ->write(!$functions ? "array()\n" : "array('".implode("', '", array_keys($functions))."')\n")
             ->outdent()
             ->write(");\n")
             ->outdent()
             ->write("} catch (Twig_Sandbox_SecurityError \$e) {\n")
             ->indent()
-            ->write("\$e->setSourceContext(\$this->getSourceContext());\n\n")
+            ->write("\$e->setTemplateFile(\$this->getTemplateName());\n\n")
             ->write("if (\$e instanceof Twig_Sandbox_SecurityNotAllowedTagError && isset(\$tags[\$e->getTagName()])) {\n")
             ->indent()
             ->write("\$e->setTemplateLine(\$tags[\$e->getTagName()]);\n")
@@ -76,5 +76,3 @@ class Twig_Node_CheckSecurity extends Twig_Node
         ;
     }
 }
-
-class_alias('Twig_Node_CheckSecurity', 'Twig\Node\CheckSecurityNode', false);

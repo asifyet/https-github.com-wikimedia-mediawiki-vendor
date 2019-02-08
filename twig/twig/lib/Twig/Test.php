@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2012 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,13 +21,13 @@
 abstract class Twig_Test implements Twig_TestInterface, Twig_TestCallableInterface
 {
     protected $options;
-    protected $arguments = [];
+    protected $arguments = array();
 
-    public function __construct(array $options = [])
+    public function __construct(array $options = array())
     {
-        $this->options = array_merge([
+        $this->options = array_merge(array(
             'callable' => null,
-        ], $options);
+        ), $options);
     }
 
     public function getCallable()
