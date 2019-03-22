@@ -75,6 +75,13 @@ data-store:
                 connection_string: 'sqlite::memory:'
                 queue: jobs_ingenico
 
+    contribution-tracking:
+        class: PHPQueue\Backend\PDO
+        constructor-parameters:
+            -
+                connection_string: 'sqlite::memory:'
+                queue: contribution_tracking
+
     donations:
         <<: *QUEUE
 
@@ -86,3 +93,11 @@ data-store:
 
     fredge-db:
         <<: *DB
+
+sequence-generator:
+    contribution-tracking:
+        class: SmashPig\Core\SequenceGenerators\SqlSequenceGenerator
+        constructor-parameters:
+            -
+                connection_string: 'sqlite::memory:'
+                sequence: contribution_tracking
