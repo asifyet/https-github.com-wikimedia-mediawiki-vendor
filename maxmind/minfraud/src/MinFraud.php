@@ -38,7 +38,7 @@ use Respect\Validation\Exceptions\ValidationException;
  */
 class MinFraud
 {
-    const VERSION = 'v1.7.0';
+    const VERSION = 'v1.8.0';
 
     private $client;
     private static $host = 'minfraud.maxmind.com';
@@ -98,7 +98,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function with($values)
     {
@@ -119,7 +120,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withDevice($values)
     {
@@ -135,7 +137,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withEvent($values)
     {
@@ -151,7 +154,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withAccount($values)
     {
@@ -167,7 +171,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withEmail($values)
     {
@@ -183,7 +188,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withBilling($values)
     {
@@ -199,7 +205,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withShipping($values)
     {
@@ -215,7 +222,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withPayment($values)
     {
@@ -231,7 +239,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withCreditCard($values)
     {
@@ -244,7 +253,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withCustomInputs($values)
     {
@@ -260,7 +270,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withOrder($values)
     {
@@ -276,7 +287,8 @@ class MinFraud
      *
      * @param $values
      *
-     * @return MinFraud
+     * @return MinFraud A new immutable MinFraud object. This object is
+     *                  a clone of the original with additional data.
      */
     public function withShoppingCartItem($values)
     {
@@ -449,7 +461,7 @@ class MinFraud
     {
         $cleaned = [];
         foreach ($array as $key => $value) {
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $cleaned[$key] = $this->clean($array[$key]);
             } elseif ($array[$key] !== null) {
                 $cleaned[$key] = $array[$key];
