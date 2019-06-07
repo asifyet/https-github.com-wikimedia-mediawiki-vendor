@@ -8,88 +8,13 @@
 		"vendor-dir": "."
 	},
 	"prefer-stable": true,
-	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"name": "ruflin/elastica",
-				"description": "upstream requires PHP 7.0 hhvm exposes PHP 5 (it's fine to drop this repo once hhvm is completely replaced with php). Additionally scalar type hints had to be removed for hhvm compatibility.",
-				"version": "6.0.2.2",
-				"dist": {
-					"url": "https://github.com/ebernhardson/Elastica/archive/6.0.2-wmf-2.zip",
-					"type": "zip"
-				},
-				"source": {
-					"url": "https://github.com/ebernhardson/Elastica.git",
-					"type": "git",
-					"reference": "tags/6.0.2-wmf-2"
-				},
-				"autoload": {
-					"psr-4": {
-						"Elastica\\": "lib/Elastica/"
-					}
-				},
-				"require": {
-					"php": ">=5.5.0",
-					"elasticsearch/elasticsearch": "^6.0"
-				}
-			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "elasticsearch/elasticsearch",
-				"description": "Forked version on my own github.com/nomoa repo because upstream uses declare(strict_type=1), PHP 7.0 and ext-json >= 1.3.7 but hhvm exposes PHP 5 & ext-json 1.2.1 (it's fine to drop this repo once hhvm is completely replaced with php)",
-				"version": "v6.0.1",
-				"version_normalized": "6.0.1.0",
-				"dist": {
-					"type": "zip",
-					"url": "https://codeload.github.com/nomoa/elasticsearch-php/zip/bc9e8674d7df3b9d4d1fb1241b299a82ec63911a",
-					"reference": "bc9e8674d7df3b9d4d1fb1241b299a82ec63911a"
-				},
-				"source": {
-					"url": "https://github.com/nomoa/elasticsearch-php.git",
-					"type": "git",
-					"reference": "f737af177384dd9bf353244b6eaeb6149ab5026e"
-				},
-				"require": {
-					"guzzlehttp/ringphp": "~1.0",
-					"psr/log": "~1.0"
-				},
-				"autoload": {
-					"psr-4": {
-						"Elasticsearch\\": "src/Elasticsearch/"
-					}
-				}
-			}
-		}
-	],
 	"require": {
 		"composer/semver": "1.4.2",
 		"cssjanus/cssjanus": "1.3.0",
-		"data-values/common": "0.4.2",
-		"data-values/data-values": "2.1.1",
-		"data-values/geo": "3.0.1",
-		"data-values/interfaces": "0.2.5",
-		"data-values/number": "0.10.1",
-		"data-values/serialization": "1.2.3",
-		"data-values/time": "1.0.1",
-		"diff/diff": "2.3.0",
-		"dnoegel/php-xdg-base-dir": "0.1",
-		"firebase/php-jwt": "5.0.0",
 		"guzzlehttp/guzzle": "6.3.3",
 		"guzzlehttp/promises": "1.3.1",
 		"guzzlehttp/psr7": "1.5.0",
-		"jakub-onderka/php-console-color": "0.2",
-		"jakub-onderka/php-console-highlighter": "0.3.2",
-		"james-heinrich/getid3": "1.9.17",
-		"justinrainbow/json-schema": "5.2.8",
 		"liuggio/statsd-php-client": "1.0.18",
-		"monolog/monolog": "1.22.1",
-		"mustangostang/spyc": "0.6.2",
-		"nikic/php-parser": "3.1.5",
-		"nmred/kafka-php": "0.1.5",
-		"onoi/message-reporter": "1.4.1",
 		"oojs/oojs-ui": "0.31.3",
 		"pear/console_getopt": "1.4.2",
 		"pear/mail": "1.4.1",
@@ -99,24 +24,9 @@
 		"pear/pear-core-minimal": "1.10.7",
 		"pear/pear_exception": "1.0.0",
 		"php": ">=5.5.9",
-		"pimple/pimple": "3.0.2",
 		"psr/http-message": "1.0.1",
 		"psr/log": "1.0.2",
-		"psr/simple-cache": "1.0.1",
-		"psy/psysh": "0.9.9",
 		"ralouphie/getallheaders": "2.0.5",
-		"ruflin/elastica": "6.0.2.2",
-		"serialization/serialization": "4.0.0",
-		"stil/gd-text": "1.0.0",
-		"symfony/console": "3.4.22",
-		"symfony/debug": "3.4.22",
-		"symfony/translation": "3.4.22",
-		"symfony/validator": "3.4.22",
-		"symfony/var-dumper": "3.4.22",
-		"wikibase/data-model": "9.1.0",
-		"wikibase/data-model-serialization": "2.9.1",
-		"wikibase/data-model-services": "3.13.0",
-		"wikibase/internal-serialization": "2.9.0",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/at-ease": "1.2.0",
 		"wikimedia/avro": "1.8.0",
@@ -124,12 +34,9 @@
 		"wikimedia/cdb": "1.4.1",
 		"wikimedia/cldr-plural-rule-parser": "1.0.0",
 		"wikimedia/composer-merge-plugin": "1.4.1",
-		"wikimedia/css-sanitizer": "2.0.1",
-		"wikimedia/equivset": "1.3.0",
 		"wikimedia/html-formatter": "1.0.2",
 		"wikimedia/ip-set": "2.0.1",
 		"wikimedia/less.php": "1.8.0",
-		"wikimedia/lucene-explain-parser": "1.0.0",
 		"wikimedia/object-factory": "1.0.0",
 		"wikimedia/password-blacklist": "0.1.4",
 		"wikimedia/php-session-serializer": "1.0.7",
@@ -138,14 +45,11 @@
 		"wikimedia/remex-html": "2.0.1",
 		"wikimedia/running-stat": "1.2.1",
 		"wikimedia/scoped-callback": "3.0.0",
-		"wikimedia/testing-access-wrapper": "1.0.0",
-		"wikimedia/textcat": "1.3.0",
 		"wikimedia/timestamp": "2.2.0",
 		"wikimedia/utfnormal": "2.0.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
 		"wikimedia/wrappedstring": "3.0.1",
 		"wikimedia/xmp-reader": "0.6.2",
-		"wmde/php-vuejs-templating": "1.0.2",
 		"zordius/lightncandy": "0.23"
 	},
 	"replace": {
