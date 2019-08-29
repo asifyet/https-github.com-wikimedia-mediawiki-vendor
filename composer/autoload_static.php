@@ -7,7 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInit_mediawiki_vendor
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
@@ -38,7 +37,6 @@ class ComposerStaticInit_mediawiki_vendor
             'Symfony\\Polyfill\\Php55\\' => 23,
             'Symfony\\Polyfill\\Php54\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\EventDispatcher\\' => 34,
@@ -123,10 +121,6 @@ class ComposerStaticInit_mediawiki_vendor
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Component\\Yaml\\' => 
         array (
@@ -456,6 +450,7 @@ class ComposerStaticInit_mediawiki_vendor
         'CurrencyCountryRule' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/CurrencyCountryRule.php',
         'DataValidator' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DataValidator.php',
         'DonationApi' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/donation.api.php',
+        'DonationApiBase' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DonationApiBase.php',
         'DonationData' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DonationData.php',
         'DonationInterface' => __DIR__ . '/../..' . '/extensions/DonationInterface/DonationInterface.class.php',
         'DonationLogProcessor' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DonationLogProcessor.php',
@@ -1216,6 +1211,8 @@ class ComposerStaticInit_mediawiki_vendor
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'RecurringConversion' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/RecurringConversion.php',
+        'RecurringConversionApi' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/RecurringConversion.api.php',
         'RecursiveCallbackFilterIterator' => __DIR__ . '/..' . '/symfony/polyfill-php54/Resources/stubs/RecursiveCallbackFilterIterator.php',
         'RemexHtml\\DOM\\DOMBuilder' => __DIR__ . '/..' . '/wikimedia/remex-html/RemexHtml/DOM/DOMBuilder.php',
         'RemexHtml\\DOM\\DOMFormatter' => __DIR__ . '/..' . '/wikimedia/remex-html/RemexHtml/DOM/DOMFormatter.php',
@@ -2473,6 +2470,7 @@ class ComposerStaticInit_mediawiki_vendor
         'Symfony\\Component\\HttpFoundation\\Session\\Storage\\Proxy\\SessionHandlerProxy' => __DIR__ . '/..' . '/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php',
         'Symfony\\Component\\HttpFoundation\\Session\\Storage\\SessionStorageInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Session/Storage/SessionStorageInterface.php',
         'Symfony\\Component\\HttpFoundation\\StreamedResponse' => __DIR__ . '/..' . '/symfony/http-foundation/StreamedResponse.php',
+        'Symfony\\Component\\Yaml\\Command\\LintCommand' => __DIR__ . '/..' . '/symfony/yaml/Command/LintCommand.php',
         'Symfony\\Component\\Yaml\\Dumper' => __DIR__ . '/..' . '/symfony/yaml/Dumper.php',
         'Symfony\\Component\\Yaml\\Escaper' => __DIR__ . '/..' . '/symfony/yaml/Escaper.php',
         'Symfony\\Component\\Yaml\\Exception\\DumpException' => __DIR__ . '/..' . '/symfony/yaml/Exception/DumpException.php',
@@ -2481,9 +2479,9 @@ class ComposerStaticInit_mediawiki_vendor
         'Symfony\\Component\\Yaml\\Exception\\RuntimeException' => __DIR__ . '/..' . '/symfony/yaml/Exception/RuntimeException.php',
         'Symfony\\Component\\Yaml\\Inline' => __DIR__ . '/..' . '/symfony/yaml/Inline.php',
         'Symfony\\Component\\Yaml\\Parser' => __DIR__ . '/..' . '/symfony/yaml/Parser.php',
+        'Symfony\\Component\\Yaml\\Tag\\TaggedValue' => __DIR__ . '/..' . '/symfony/yaml/Tag/TaggedValue.php',
         'Symfony\\Component\\Yaml\\Unescaper' => __DIR__ . '/..' . '/symfony/yaml/Unescaper.php',
         'Symfony\\Component\\Yaml\\Yaml' => __DIR__ . '/..' . '/symfony/yaml/Yaml.php',
-        'Symfony\\Polyfill\\Ctype\\Ctype' => __DIR__ . '/..' . '/symfony/polyfill-ctype/Ctype.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php54\\Php54' => __DIR__ . '/..' . '/symfony/polyfill-php54/Php54.php',
         'Symfony\\Polyfill\\Php55\\Php55' => __DIR__ . '/..' . '/symfony/polyfill-php55/Php55.php',
