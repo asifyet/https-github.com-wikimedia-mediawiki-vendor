@@ -568,6 +568,7 @@ class ComposerStaticInit_mediawiki_vendor
         'IngenicoMethodCodec' => __DIR__ . '/../..' . '/extensions/DonationInterface/globalcollect_gateway/IngenicoMethodCodec.php',
         'IngenicoOrphanAdapter' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/orphan.adapter.php',
         'IngenicoOrphanRectifier' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/IngenicoOrphanRectifier.php',
+        'IngenicoPaymentSubmethod' => __DIR__ . '/../..' . '/extensions/DonationInterface/ingenico_gateway/IngenicoPaymentSubmethod.php',
         'IngenicoReturntoHelper' => __DIR__ . '/../..' . '/extensions/DonationInterface/globalcollect_gateway/IngenicoReturntoHelper.php',
         'IsoDate' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/IsoDate.php',
         'LCRun3' => __DIR__ . '/..' . '/zordius/lightncandy/src/lightncandy.php',

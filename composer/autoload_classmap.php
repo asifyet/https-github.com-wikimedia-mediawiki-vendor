@@ -282,6 +282,7 @@ return array(
     'IngenicoMethodCodec' => $baseDir . '/extensions/DonationInterface/globalcollect_gateway/IngenicoMethodCodec.php',
     'IngenicoOrphanAdapter' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/orphan.adapter.php',
     'IngenicoOrphanRectifier' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/IngenicoOrphanRectifier.php',
+    'IngenicoPaymentSubmethod' => $baseDir . '/extensions/DonationInterface/ingenico_gateway/IngenicoPaymentSubmethod.php',
     'IngenicoReturntoHelper' => $baseDir . '/extensions/DonationInterface/globalcollect_gateway/IngenicoReturntoHelper.php',
     'IsoDate' => $baseDir . '/extensions/DonationInterface/gateway_common/IsoDate.php',
     'LCRun3' => $vendorDir . '/zordius/lightncandy/src/lightncandy.php',
