@@ -16,6 +16,7 @@ return array(
     'AdyenGatewayResult' => $baseDir . '/extensions/DonationInterface/adyen_gateway/adyen_resultswitcher.body.php',
     'AdyenHostedSignature' => $baseDir . '/extensions/DonationInterface/adyen_gateway/AdyenHostedSignature.php',
     'AdyenMethodCodec' => $baseDir . '/extensions/DonationInterface/adyen_gateway/AdyenMethodCodec.php',
+    'AdyenSubmethodCodec' => $baseDir . '/extensions/DonationInterface/adyen_gateway/AdyenSubmethodCodec.php',
     'AmazonAdapter' => $baseDir . '/extensions/DonationInterface/amazon_gateway/amazon.adapter.php',
     'AmazonBillingApi' => $baseDir . '/extensions/DonationInterface/amazon_gateway/amazon.api.php',
     'AmazonGateway' => $baseDir . '/extensions/DonationInterface/amazon_gateway/amazon_gateway.body.php',

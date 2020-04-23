@@ -302,6 +302,7 @@ class ComposerStaticInit_mediawiki_vendor
         'AdyenGatewayResult' => __DIR__ . '/../..' . '/extensions/DonationInterface/adyen_gateway/adyen_resultswitcher.body.php',
         'AdyenHostedSignature' => __DIR__ . '/../..' . '/extensions/DonationInterface/adyen_gateway/AdyenHostedSignature.php',
         'AdyenMethodCodec' => __DIR__ . '/../..' . '/extensions/DonationInterface/adyen_gateway/AdyenMethodCodec.php',
+        'AdyenSubmethodCodec' => __DIR__ . '/../..' . '/extensions/DonationInterface/adyen_gateway/AdyenSubmethodCodec.php',
         'AmazonAdapter' => __DIR__ . '/../..' . '/extensions/DonationInterface/amazon_gateway/amazon.adapter.php',
         'AmazonBillingApi' => __DIR__ . '/../..' . '/extensions/DonationInterface/amazon_gateway/amazon.api.php',
         'AmazonGateway' => __DIR__ . '/../..' . '/extensions/DonationInterface/amazon_gateway/amazon_gateway.body.php',
