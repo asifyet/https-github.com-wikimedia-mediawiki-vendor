@@ -77,7 +77,13 @@ Page](https://maxmind.github.io/minfraud-api-php/) under the "API" tab.
 
 ## Usage ##
 
-To use this API, create a new `\MaxMind\MinFraud` object. The constructor
+This library provides access to both the [minFraud (Score, Insights and
+Factors)](https://dev.maxmind.com/minfraud/)
+and [Report Transaction](https://dev.maxmind.com/minfraud/report-transaction/) APIs.
+
+### minFraud API ###
+
+To use the MinFraud API, create a new `\MaxMind\MinFraud` object. The constructor
 takes your MaxMind account ID, license key, and an optional options array as
 arguments. This object is immutable. You then build up the request using the
 `->with*` methods as shown below. Each method call returns a new object. The
@@ -98,7 +104,7 @@ thrown.
 
 See the API documentation for more details.
 
-### Exceptions ###
+#### minFraud Exceptions ####
 
 All externally visible exceptions are in the `\MaxMind\Exception` namespace.
 The possible exceptions are:
@@ -123,7 +129,7 @@ The possible exceptions are:
   serves as the base class for the above exceptions.
 
 
-## Example
+#### minFraud Example ####
 
 ```php
 <?php
@@ -212,10 +218,10 @@ $request = $mf->withDevice([
     'quantity' => 1,
     'price'    => 100.00,
 ])->withCustomInputs([
-    'section'                      => 'news',
-    'number_of_previous_purchases' => 19,
-    'discount'                     => 3.2,
-    'previous_user'                => true,
+    'section'            => 'news',
+    'previous_purchases' => 19,
+    'discount'           => 3.2,
+    'previous_user'      => true,
 ]);
 
 # To get the minFraud Factors response model, use ->factors():
@@ -243,6 +249,73 @@ foreach ($scoreResponse->warnings as $warning) {
 }
 ```
 
+### Report Transactions API ###
+
+MaxMind encourages the use of this API as data received through this channel is
+used to continually improve the accuracy of our fraud detection algorithms.
+
+To use the Report Transactions API, create a new
+`\MaxMind\MinFraud\ReportTransaction` object. The constructor takes your MaxMind
+account ID, license key, and an optional options array as arguments. This object
+is immutable. You then send one or more reports using the `->report` method as
+shown below.
+
+If there is a validation error in the data passed to the `->report` method, a
+`\MaxMind\Exception` will be thrown. This validation can be disabled by
+setting `validateInput` to `false` in the options array for
+`\MaxMind\MinFraud\ReportTransaction`, but it is recommended that you keep it on
+at least through development as it will help ensure that you are sending valid
+data to the web service.
+
+If the report is successful, nothing is returned. If the report fails, an
+exception with be thrown.
+
+See the API documentation for more details.
+
+#### Report Transaction Exceptions ####
+
+All externally visible exceptions are in the `\MaxMind\Exception` namespace.
+The possible exceptions are:
+
+* `InvalidInputException` - This will be thrown when the `->report()` method is
+  called with invalid input data or when the required `ip_address` or `tag`
+  fields are missing.
+* `AuthenticationException` - This will be thrown on calling `->report()`,
+  when the server is unable to authenticate the request, e.g., if the license
+  key or account ID is invalid.
+* `InvalidRequestException` - This will be thrown on calling `->report()` when
+  the server rejects the request for another reason such as invalid JSON in the
+  POST.
+* `HttpException` - This will be thrown on calling `->report()` when an
+  unexpected HTTP error occurs such as a firewall interfering with the request
+  to the server.
+* `WebServiceException` - This will be thrown on calling `->report()` when some
+  other error occurs. This also serves as the base class for the above
+  exceptions.
+
+#### Report Transaction Example ####
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+use MaxMind\MinFraud\ReportTransaction;
+
+# The constructor for ReportTransaction takes your account ID, your license key,
+# and optionally an array of options.
+$rt = new ReportTransaction(1, 'ABCD567890');
+
+$rt->report(
+    'ip_address'      => '81.2.69.160',
+    'tag'             => 'chargeback',
+    'chargeback_code' => 'UA02',
+    'minfraud_id'     => '26ae87e4-5112-4f76-b0f7-4132d45d72b2',
+    'maxmind_id'      => 'aBcDeFgH',
+    'notes'           => 'Found due to non-existent shipping address',
+    'transaction_id'  => 'cart123456789',
+);
+
+```
+
 ## Support ##
 
 Please report all issues with this code using the
@@ -254,7 +327,7 @@ to the client API, please see
 
 ## Requirements  ##
 
-This code requires PHP 5.4 or greater. Older versions of PHP are not
+This code requires PHP 5.6 or greater. Older versions of PHP are not
 supported.
 
 There are several other dependencies as defined in the `composer.json` file.
@@ -270,6 +343,6 @@ This API uses [Semantic Versioning](https://semver.org/).
 
 ## Copyright and License ##
 
-This software is Copyright (c) 2015-2019 by MaxMind, Inc.
+This software is Copyright (c) 2015-2020 by MaxMind, Inc.
 
 This is free software, licensed under the Apache License, Version 2.0.

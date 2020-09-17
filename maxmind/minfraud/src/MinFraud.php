@@ -9,12 +9,10 @@ use MaxMind\Exception\InvalidInputException;
 use MaxMind\Exception\InvalidRequestException;
 use MaxMind\Exception\WebServiceException;
 use MaxMind\MinFraud\Validation;
-use MaxMind\WebService\Client;
-use Respect\Validation\Exceptions\ValidationException;
 
 /**
- * This class provides a client API for accessing MaxMind minFraud Score
- * and Insights.
+ * This class provides a client API for accessing MaxMind minFraud Score,
+ * Insights and Factors.
  *
  * ## Usage ##
  *
@@ -36,17 +34,10 @@ use Respect\Validation\Exceptions\ValidationException;
  *
  * If the request fails, an exception is thrown.
  */
-class MinFraud
+class MinFraud extends MinFraud\ServiceClient
 {
-    const VERSION = 'v1.8.0';
-
-    private $client;
-    private static $host = 'minfraud.maxmind.com';
-
-    private static $basePath = '/minfraud/v2.0/';
     private $content;
     private $locales;
-    private $validateInput = true;
 
     /**
      * @param int    $accountId  Your MaxMind account ID
@@ -79,15 +70,7 @@ class MinFraud
             $this->locales = ['en'];
         }
 
-        if (isset($options['validateInput'])) {
-            $this->validateInput = $options['validateInput'];
-        }
-
-        if (!isset($options['host'])) {
-            $options['host'] = self::$host;
-        }
-        $options['userAgent'] = $this->userAgent();
-        $this->client = new Client($accountId, $licenseKey, $options);
+        parent::__construct($accountId, $licenseKey, $options);
     }
 
     /**
@@ -96,7 +79,7 @@ class MinFraud
      *
      * @link https://dev.maxmind.com/minfraud/ minFraud API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -118,7 +101,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Device_device
      *     minFraud device API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -135,7 +118,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Event_event
      *     minFraud event API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -152,7 +135,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Account_account
      *     minFraud account API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -169,7 +152,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Email_email
      *     minFraud email API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -186,7 +169,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Billing_billing
      *     minFraud billing API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -203,7 +186,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Shipping_shipping
      *     minFraud shipping API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -220,7 +203,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Payment_payment
      *     minFraud payment API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -237,7 +220,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Credit_Card_credit_card
      *     minFraud credit_card API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -251,7 +234,7 @@ class MinFraud
      * This returns a `MinFraud` object with the `custom_inputs` array set to
      * `$values`. Existing `custom_inputs` data will be replaced.
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -268,7 +251,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Order_order
      *     minFraud order API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -285,7 +268,7 @@ class MinFraud
      * @link https://dev.maxmind.com/minfraud/#Shopping_Cart_Item
      *     minFraud shopping cart item API docs
      *
-     * @param $values
+     * @param array $values
      *
      * @return MinFraud A new immutable MinFraud object. This object is
      *                  a clone of the original with additional data.
@@ -299,6 +282,24 @@ class MinFraud
             $new->content['shopping_cart'] = [];
         }
         array_push($new->content['shopping_cart'], $values);
+
+        return $new;
+    }
+
+    /**
+     * @param string $className The name of the class (but not the namespace)
+     * @param string $key       The key in the transaction array to set
+     * @param array  $values    The values to validate
+     *
+     * @throws InvalidInputException when $values does not validate
+     *
+     * @return MinFraud
+     */
+    private function validateAndAdd($className, $key, $values)
+    {
+        $values = $this->cleanAndValidate($className, $values);
+        $new = clone $this;
+        $new->content[$key] = $values;
 
         return $new;
     }
@@ -370,7 +371,7 @@ class MinFraud
     }
 
     /**
-     * @param $service $service the name of the service to use
+     * @param string $service the name of the service to use
      *
      * @throws InvalidInputException      when the request has missing or invalid
      *                                    data
@@ -388,9 +389,7 @@ class MinFraud
     private function post($service)
     {
         if (!isset($this->content['device']['ip_address'])) {
-            throw new InvalidInputException(
-                'Key ip_address must be present in device'
-            );
+            throw new InvalidInputException('Key ip_address must be present in device');
         }
         $url = self::$basePath . strtolower($service);
         $class = 'MaxMind\\MinFraud\\Model\\' . $service;
@@ -399,75 +398,5 @@ class MinFraud
             $this->client->post($service, $url, $this->content),
             $this->locales
         );
-    }
-
-    /**
-     * @return string the prefix for the User-Agent header
-     */
-    private function userAgent()
-    {
-        return 'minFraud-API/' . self::VERSION;
-    }
-
-    /**
-     * @param string $className The name of the class (but not the namespace)
-     * @param string $key       The key in the transaction array to set
-     * @param array  $values    The values to validate
-     *
-     * @throws InvalidInputException when $values does not validate
-     *
-     * @return MinFraud
-     */
-    private function validateAndAdd($className, $key, $values)
-    {
-        $values = $this->cleanAndValidate($className, $values);
-        $new = clone $this;
-        $new->content[$key] = $values;
-
-        return $new;
-    }
-
-    /**
-     * @param string $className The name of the class (but not the namespace)
-     * @param array  $values    The values to validate
-     *
-     * @throws InvalidInputException when $values does not validate
-     *
-     * @return array The cleaned values
-     */
-    private function cleanAndValidate($className, $values)
-    {
-        $values = $this->clean($values);
-
-        if (!$this->validateInput) {
-            return $values;
-        }
-
-        $class = '\\MaxMind\\MinFraud\\Validation\\Rules\\' . $className;
-        $validator = new $class();
-        try {
-            $validator->check($values);
-        } catch (ValidationException $exception) {
-            throw new InvalidInputException(
-                $exception->getMessage(),
-                $exception->getCode()
-            );
-        }
-
-        return $values;
-    }
-
-    private function clean($array)
-    {
-        $cleaned = [];
-        foreach ($array as $key => $value) {
-            if (\is_array($value)) {
-                $cleaned[$key] = $this->clean($array[$key]);
-            } elseif ($array[$key] !== null) {
-                $cleaned[$key] = $array[$key];
-            }
-        }
-
-        return $cleaned;
     }
 }

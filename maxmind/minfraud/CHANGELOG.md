@@ -1,6 +1,79 @@
 CHANGELOG
 =========
 
+1.14.0 (2020-08-05)
+-------------------
+
+* Added the following new values to the payment processor validation:
+  * `cashfree`
+  * `first_atlantic_commerce`
+  * `komoju`
+  * `paytm`
+  * `razorpay`
+  * `systempay`
+* Added support for the `/subscores/device`, `/subscores/email_local_part` and
+  `/subscores/shipping_address` outputs. They are exposed as the `device`,
+  `emailLocalPart` and `shippingAddress` properties on
+  `MaxMind\MinFraud\Model\Subscores`.
+
+1.13.0 (2020-05-29)
+-------------------
+
+* Added support for the Report Transactions API. We encourage the use of this
+  API as we use data received through this channel to continually improve the
+  accuracy of our fraud detection algorithms.
+
+1.12.0 (2020-04-06)
+-------------------
+
+* Added support for the new credit card output `/credit_card/is_business`.
+  This indicates whether the card is a business card. It may be accessed via
+  `$response->creditCard->isBusiness` on the minFraud Insights and Factors
+  response objects.
+
+1.11.0 (2020-03-26)
+-------------------
+
+* Added support for the new email domain output `/email/domain/first_seen`.
+  This may be accessed via `$response->email->domain->firstSeen` on the
+  minFraud Insights and Factors response objects.
+* The validation of `/event/time` now allows sub-second RFC 3339 timestamps
+  in the request.
+* Added the following new values to the payment processor validation:
+  * `cardpay`
+  * `epx`
+
+1.10.0 (2020-02-21)
+-------------------
+
+* Added support for the `/email/is_disposable` output. This is available as
+  the `isDisposable` property on `MaxMind\MinFraud\Model\Email`.
+* Updated the validation on `/order/amount` and `/shopping_cart/*/price` to
+  allow 0. This was an inconsistency between this library and the web
+  service. Reported by Sn0wCrack. GitHub #78.
+
+1.9.0 (2019-12-12)
+------------------
+
+* PHP 5.6 is now required.
+* The client-side validation for numeric custom inputs has been updated to
+  match the server-side validation. The valid range is -9,999,999,999,999
+  to 9,999,999,999,999. Previously, larger numbers were allowed.
+* Added the following new values to the payment processor validation:
+  * `affirm`
+  * `afterpay`
+  * `cetelem`
+  * `dotpay`
+  * `ecommpay`
+  * `g2a_pay`
+  * `interac`
+  * `klarna`
+  * `mercanet`
+  * `paysafecard`
+* Deprecated `emailTenure` and `ipTenure` properties in
+  `MaxMind\MinFraud\Model\Subscores`.
+* Deprecated `isHighRisk` property in `MaxMind\MinFraud\Model\GeoIp2Country`.
+
 1.8.0 (2019-03-07)
 ------------------
 
