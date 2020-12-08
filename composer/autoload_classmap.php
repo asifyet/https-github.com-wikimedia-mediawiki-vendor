@@ -2256,6 +2256,7 @@ return array(
     'SmashPig\\Tests\\DamagedDatabaseTest' => $vendorDir . '/wikimedia/smash-pig/Tests/DamagedDatabaseTest.php',
     'SmashPig\\Tests\\FileDumperTest' => $vendorDir . '/wikimedia/smash-pig/Tests/FileDumperTest.php',
     'SmashPig\\Tests\\Helpers\\CurrencyRoundingHelperTest' => $vendorDir . '/wikimedia/smash-pig/Tests/Helpers/CurrencyRoundingHelperTest.php',
+    'SmashPig\\Tests\\LogContextHandlerTest' => $vendorDir . '/wikimedia/smash-pig/Tests/LogContextHandlerTest.php',
     'SmashPig\\Tests\\MapperTest' => $vendorDir . '/wikimedia/smash-pig/Tests/MapperTest.php',
     'SmashPig\\Tests\\MessageTest' => $vendorDir . '/wikimedia/smash-pig/Tests/MessageTest.php',
     'SmashPig\\Tests\\PaymentsInitialDatabaseTest' => $vendorDir . '/wikimedia/smash-pig/Tests/PaymentsInitialDatabaseTest.php',

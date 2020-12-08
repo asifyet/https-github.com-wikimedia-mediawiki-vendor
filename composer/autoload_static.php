@@ -2631,6 +2631,7 @@ class ComposerStaticInit_mediawiki_vendor
         'SmashPig\\Tests\\DamagedDatabaseTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/DamagedDatabaseTest.php',
         'SmashPig\\Tests\\FileDumperTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/FileDumperTest.php',
         'SmashPig\\Tests\\Helpers\\CurrencyRoundingHelperTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/Helpers/CurrencyRoundingHelperTest.php',
+        'SmashPig\\Tests\\LogContextHandlerTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/LogContextHandlerTest.php',
         'SmashPig\\Tests\\MapperTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/MapperTest.php',
         'SmashPig\\Tests\\MessageTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/MessageTest.php',
         'SmashPig\\Tests\\PaymentsInitialDatabaseTest' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/PaymentsInitialDatabaseTest.php',
