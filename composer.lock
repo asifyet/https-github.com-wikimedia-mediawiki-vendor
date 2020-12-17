@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87382c96312ee5c28ce1b3ff75456e7b",
+    "content-hash": "dd0402a74de5ee5de3e5033a923d43e8",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -1815,16 +1815,16 @@
         },
         {
             "name": "wikimedia/parsoid",
-            "version": "v0.12.0",
+            "version": "v0.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/parsoid.git",
-                "reference": "4062d23e3660fd34b2adc30a9b883f73415b1607"
+                "reference": "6e7e27141400d820c6f62914ec461bf707a9afe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/parsoid/zipball/4062d23e3660fd34b2adc30a9b883f73415b1607",
-                "reference": "4062d23e3660fd34b2adc30a9b883f73415b1607",
+                "url": "https://api.github.com/repos/wikimedia/parsoid/zipball/6e7e27141400d820c6f62914ec461bf707a9afe7",
+                "reference": "6e7e27141400d820c6f62914ec461bf707a9afe7",
                 "shasum": ""
             },
             "require": {
@@ -1849,7 +1849,7 @@
                 "composer/composer": "^1.10@RC",
                 "ext-curl": "*",
                 "mediawiki/mediawiki-codesniffer": "31.0.0",
-                "mediawiki/mediawiki-phan-config": "0.10.2",
+                "mediawiki/mediawiki-phan-config": "0.10.3",
                 "mediawiki/minus-x": "1.1.0",
                 "monolog/monolog": "~1.25.2",
                 "ockcyp/covers-validator": "1.1.1",
@@ -1886,7 +1886,7 @@
                 "mediawiki",
                 "parsoid"
             ],
-            "time": "2020-08-26T12:47:35+00:00"
+            "time": "2020-12-17T00:18:28+00:00"
         },
         {
             "name": "wikimedia/php-session-serializer",
