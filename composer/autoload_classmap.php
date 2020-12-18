@@ -185,6 +185,7 @@ return array(
     'EasyPeasyICS' => $vendorDir . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
     'EmployerSearchAPI' => $baseDir . '/extensions/DonationInterface/gateway_common/employerSearch.api.php',
     'EncodingMangler' => $baseDir . '/extensions/DonationInterface/gateway_common/EncodingMangler.php',
+    'EndowmentHooks' => $baseDir . '/extensions/DonationInterface/gateway_common/EndowmentHooks.php',
     'ErrorState' => $baseDir . '/extensions/DonationInterface/gateway_common/ErrorState.php',
     'FallbackLogPrefixer' => $baseDir . '/extensions/DonationInterface/gateway_common/FallbackLogPrefixer.php',
     'FiscalNumber' => $baseDir . '/extensions/DonationInterface/gateway_common/FiscalNumber.php',

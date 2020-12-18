@@ -560,6 +560,7 @@ class ComposerStaticInit_mediawiki_vendor
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'EmployerSearchAPI' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/employerSearch.api.php',
         'EncodingMangler' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/EncodingMangler.php',
+        'EndowmentHooks' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/EndowmentHooks.php',
         'ErrorState' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/ErrorState.php',
         'FallbackLogPrefixer' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/FallbackLogPrefixer.php',
         'FiscalNumber' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/FiscalNumber.php',
