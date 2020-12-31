@@ -14,7 +14,7 @@
 		"guzzlehttp/guzzle": "6.5.5",
 		"guzzlehttp/promises": "1.4.0",
 		"guzzlehttp/psr7": "1.7.0",
-		"jakobo/hotp-php": "1.0.1",
+		"jakobo/hotp-php": "2.0.0",
 		"liuggio/statsd-php-client": "1.0.18",
 		"oojs/oojs-ui": "0.39.3",
 		"pear/console_getopt": "1.4.3",
