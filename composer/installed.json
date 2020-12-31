@@ -2451,25 +2451,30 @@
     },
     {
         "name": "wikimedia/wikipeg",
-        "version": "2.0.4",
-        "version_normalized": "2.0.4.0",
+        "version": "2.0.5",
+        "version_normalized": "2.0.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/wikimedia/wikipeg.git",
-            "reference": "117ddc894cf44f7f8e149e94180b68a8a7c0904d"
+            "reference": "df47c20859c80923d08ce906c5c7412161ef052f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wikimedia/wikipeg/zipball/117ddc894cf44f7f8e149e94180b68a8a7c0904d",
-            "reference": "117ddc894cf44f7f8e149e94180b68a8a7c0904d",
+            "url": "https://api.github.com/repos/wikimedia/wikipeg/zipball/df47c20859c80923d08ce906c5c7412161ef052f",
+            "reference": "df47c20859c80923d08ce906c5c7412161ef052f",
             "shasum": ""
         },
         "require": {
             "ext-json": "*",
             "ext-mbstring": "*",
-            "php": "^7.2"
+            "php": ">=7.2"
         },
-        "time": "2020-02-13T19:00:24+00:00",
+        "require-dev": {
+            "mediawiki/minus-x": "1.1.0",
+            "php-parallel-lint/php-console-highlighter": "0.5.0",
+            "php-parallel-lint/php-parallel-lint": "1.2.0"
+        },
+        "time": "2020-12-17T21:12:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
