@@ -3,14 +3,12 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
- * (c) Arnaud Le Blanc
+ * (c) 2010 Fabien Potencier
+ * (c) 2010 Arnaud Le Blanc
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-use Twig\TokenParser\TokenParserInterface;
 
 /**
  * Interface implemented by token parser brokers.
@@ -28,19 +26,21 @@ interface Twig_TokenParserBrokerInterface
      *
      * @param string $tag A tag name
      *
-     * @return TokenParserInterface|null A Twig_TokenParserInterface or null if no suitable TokenParser was found
+     * @return null|Twig_TokenParserInterface A Twig_TokenParserInterface or null if no suitable TokenParser was found
      */
     public function getTokenParser($tag);
 
     /**
-     * Calls Twig\TokenParser\TokenParserInterface::setParser on all parsers the implementation knows of.
+     * Calls Twig_TokenParserInterface::setParser on all parsers the implementation knows of.
+     *
+     * @param Twig_ParserInterface $parser A Twig_ParserInterface interface
      */
     public function setParser(Twig_ParserInterface $parser);
 
     /**
      * Gets the Twig_ParserInterface.
      *
-     * @return Twig_ParserInterface|null A Twig_ParserInterface instance or null
+     * @return null|Twig_ParserInterface A Twig_ParserInterface instance or null
      */
     public function getParser();
 }

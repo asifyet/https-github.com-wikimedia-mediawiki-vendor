@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2012 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +12,7 @@
 /**
  * Represents a callable template filter.
  *
- * Use \Twig\TwigFilter instead.
+ * Use Twig_SimpleFilter instead.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *

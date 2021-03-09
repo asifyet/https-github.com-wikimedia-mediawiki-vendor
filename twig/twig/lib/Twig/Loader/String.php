@@ -3,18 +3,13 @@
 /*
  * This file is part of Twig.
  *
- * (c) Fabien Potencier
+ * (c) 2009 Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-use Twig\Loader\ExistsLoaderInterface;
-use Twig\Loader\LoaderInterface;
-use Twig\Loader\SourceContextLoaderInterface;
-use Twig\Source;
-
-@trigger_error('The Twig_Loader_String class is deprecated since version 1.18.1 and will be removed in 2.0. Use "Twig\Loader\ArrayLoader" instead or "Twig\Environment::createTemplate()".', E_USER_DEPRECATED);
+@trigger_error('The Twig_Loader_String class is deprecated since version 1.18.1 and will be removed in 2.0. Use Twig_Loader_Array instead or Twig_Environment::createTemplate().', E_USER_DEPRECATED);
 
 /**
  * Loads a template from a string.
@@ -32,30 +27,35 @@ use Twig\Source;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Twig_Loader_String implements LoaderInterface, ExistsLoaderInterface, SourceContextLoaderInterface
+class Twig_Loader_String implements Twig_LoaderInterface, Twig_ExistsLoaderInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getSource($name)
     {
-        @trigger_error(sprintf('Calling "getSource" on "%s" is deprecated since 1.27. Use getSourceContext() instead.', static::class), E_USER_DEPRECATED);
-
         return $name;
     }
 
-    public function getSourceContext($name)
-    {
-        return new Source($name, $name);
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function exists($name)
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCacheKey($name)
     {
         return $name;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isFresh($name, $time)
     {
         return true;
