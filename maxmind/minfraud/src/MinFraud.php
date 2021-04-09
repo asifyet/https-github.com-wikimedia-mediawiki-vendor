@@ -10,6 +10,7 @@ use MaxMind\Exception\InsufficientFundsException;
 use MaxMind\Exception\InvalidInputException;
 use MaxMind\Exception\InvalidRequestException;
 use MaxMind\Exception\WebServiceException;
+use MaxMind\MinFraud\Util;
 
 /**
  * This class provides a client API for accessing MaxMind minFraud Score,
@@ -37,7 +38,17 @@ use MaxMind\Exception\WebServiceException;
  */
 class MinFraud extends MinFraud\ServiceClient
 {
+    /**
+     * @var array
+     */
     private $content;
+    /**
+     * @var bool
+     */
+    private $hashEmail;
+    /**
+     * @var array<string>
+     */
     private $locales;
 
     /**
@@ -50,6 +61,10 @@ class MinFraud extends MinFraud\ServiceClient
      *   request.
      * * `caBundle` - The bundle of CA root certificates to use in the request.
      * * `connectTimeout` - The connect timeout to use for the request.
+     * * `hashEmail` - By default, the email address is sent in plain text.
+     *   If this is set to `true`, the email address will be normalized and
+     *   converted to an MD5 hash before the request is sent. The email domain
+     *   will continue to be sent in plain text.
      * * `timeout` - The timeout to use for the request.
      * * `proxy` - The HTTP proxy to use. May include a schema, port,
      *   username, and password, e.g., `http://username:password@127.0.0.1:10`.
@@ -65,6 +80,8 @@ class MinFraud extends MinFraud\ServiceClient
         string $licenseKey,
         array $options = []
     ) {
+        $this->hashEmail = isset($options['hashEmail']) && $options['hashEmail'];
+
         if (isset($options['locales'])) {
             $this->locales = $options['locales'];
         } else {
@@ -86,6 +103,10 @@ class MinFraud extends MinFraud\ServiceClient
     public function with(array $values): self
     {
         $values = $this->cleanAndValidate('Transaction', $values);
+
+        if ($this->hashEmail) {
+            $values = Util::maybeHashEmail($values);
+        }
 
         $new = clone $this;
         $new->content = $values;
@@ -150,7 +171,13 @@ class MinFraud extends MinFraud\ServiceClient
      */
     public function withEmail(array $values): self
     {
-        return $this->validateAndAdd('Email', 'email', $values);
+        $obj = $this->validateAndAdd('Email', 'email', $values);
+
+        if ($this->hashEmail) {
+            $obj->content = Util::maybeHashEmail($obj->content);
+        }
+
+        return $obj;
     }
 
     /**
@@ -258,7 +285,7 @@ class MinFraud extends MinFraud\ServiceClient
         if (!isset($new->content['shopping_cart'])) {
             $new->content['shopping_cart'] = [];
         }
-        array_push($new->content['shopping_cart'], $values);
+        $new->content['shopping_cart'][] = $values;
 
         return $new;
     }
@@ -296,7 +323,7 @@ class MinFraud extends MinFraud\ServiceClient
      *
      * @return \MaxMind\MinFraud\Model\Score minFraud Score model object
      */
-    public function score(): \MaxMind\MinFraud\Model\Score
+    public function score(): MinFraud\Model\Score
     {
         return $this->post('Score');
     }
@@ -318,7 +345,7 @@ class MinFraud extends MinFraud\ServiceClient
      *
      * @return \MaxMind\MinFraud\Model\Insights minFraud Insights model object
      */
-    public function insights(): \MaxMind\MinFraud\Model\Insights
+    public function insights(): MinFraud\Model\Insights
     {
         return $this->post('Insights');
     }
@@ -340,7 +367,7 @@ class MinFraud extends MinFraud\ServiceClient
      *
      * @return \MaxMind\MinFraud\Model\Factors minFraud Factors model object
      */
-    public function factors(): \MaxMind\MinFraud\Model\Factors
+    public function factors(): MinFraud\Model\Factors
     {
         return $this->post('Factors');
     }
@@ -363,9 +390,6 @@ class MinFraud extends MinFraud\ServiceClient
      */
     private function post(string $service)
     {
-        if (!isset($this->content['device']['ip_address'])) {
-            throw new InvalidInputException('Key ip_address must be present in device');
-        }
         $url = self::$basePath . strtolower($service);
         $class = 'MaxMind\\MinFraud\\Model\\' . $service;
 

@@ -1,6 +1,38 @@
 CHANGELOG
 =========
 
+1.17.0 (2021-02-02)
+-------------------
+
+* IMPORTANT: PHP 7.3 or greater is now required.
+* The dependency `Respect\Validation` has been upgraded from 1.x to 2.1.
+* The `with()` method on `MaxMind\MinFraud` may now be used when
+  `device` and `shopping_cart` are not set.
+* Added the following new values to the payment processor validation:
+  * `apple_pay`
+  * `aps_payments`
+* You may now enable client-side email hashing by setting `hashEmail` to
+  `true` in the `MaxMind\MinFraud` constructor's options parameter. When set,
+  this normalizes the email address and sends an MD5 hash of it to the web
+  service rather than the plain-text address. Note that the email domain will
+  still be sent in plain text.
+* Added support for the IP address risk reasons in the minFraud Insights and
+  Factors responses. This is available at `->ipAddress->riskReasons`. It is
+  an array of `MaxMind\MinFraud\Model\IpRiskReason` objects.
+
+1.16.1 (2020-11-02)
+-------------------
+
+* `maxmind/web-service-common` has been updated to 0.8.1 to fix an issue when
+  using the `reportTransaction` method. Reported by Dmitry Malashko. GitHub
+  #99.
+
+1.16.0 (2020-10-13)
+-------------------
+
+* Added `tsys` to the payment processor validation.
+* The device IP address is no longer a required input.
+
 1.15.0 (2020-10-01)
 -------------------
 

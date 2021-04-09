@@ -14,7 +14,7 @@ class PaymentProcessor extends AbstractWrapper
 {
     public function __construct()
     {
-        $this->validatable = v::in(
+        parent::__construct(v::in(
             [
                 'adyen',
                 'affirm',
@@ -22,6 +22,8 @@ class PaymentProcessor extends AbstractWrapper
                 'altapay',
                 'amazon_payments',
                 'american_express_payment_gateway',
+                'apple_pay',
+                'aps_payments',
                 'authorizenet',
                 'balanced',
                 'beanstream',
@@ -136,6 +138,7 @@ class PaymentProcessor extends AbstractWrapper
                 'telerecargas',
                 'towah',
                 'transact_pro',
+                'tsys',
                 'usa_epay',
                 'vantiv',
                 'verepay',
@@ -147,6 +150,6 @@ class PaymentProcessor extends AbstractWrapper
                 'wirecard',
                 'worldpay',
             ]
-        );
+        ));
     }
 }

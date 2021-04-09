@@ -110,9 +110,7 @@ All externally visible exceptions are in the `\MaxMind\Exception` namespace.
 The possible exceptions are:
 
 * `InvalidInputException` - This will be thrown when a `->with*` method is
-  called with invalid input data or when `->score()`, `->insights()`, or
-  `->factors()` is called on a request where the required `ip_address` field in
-  the `device` array is missing.
+  called with invalid input data.
 * `AuthenticationException` - This will be thrown on calling `->score()`,
   `->insights()`, or `->factors()` when the server is unable to authenticate
   the request, e.g., if the license key or account ID is invalid.
@@ -304,7 +302,7 @@ use MaxMind\MinFraud\ReportTransaction;
 # and optionally an array of options.
 $rt = new ReportTransaction(1, 'ABCD567890');
 
-$rt->report(
+$rt->report([
     'ip_address'      => '152.216.7.110',
     'tag'             => 'chargeback',
     'chargeback_code' => 'UA02',
@@ -312,8 +310,7 @@ $rt->report(
     'maxmind_id'      => 'aBcDeFgH',
     'notes'           => 'Found due to non-existent shipping address',
     'transaction_id'  => 'cart123456789',
-);
-
+]);
 ```
 
 ## Support ##
@@ -327,7 +324,7 @@ to the client API, please see
 
 ## Requirements  ##
 
-This code requires PHP 5.6 or greater. Older versions of PHP are not
+This code requires PHP 7.3 or greater. Older versions of PHP are not
 supported.
 
 There are several other dependencies as defined in the `composer.json` file.

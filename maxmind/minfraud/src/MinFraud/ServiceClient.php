@@ -10,11 +10,23 @@ use Respect\Validation\Exceptions\ValidationException;
 
 abstract class ServiceClient
 {
-    const VERSION = 'v1.15.0';
+    public const VERSION = 'v1.17.0';
 
+    /**
+     * @var Client
+     */
     protected $client;
+    /**
+     * @var string
+     */
     protected static $host = 'minfraud.maxmind.com';
+    /**
+     * @var string
+     */
     protected static $basePath = '/minfraud/v2.0/';
+    /**
+     * @var bool
+     */
     protected $validateInput = true;
 
     public function __construct(
@@ -59,6 +71,7 @@ abstract class ServiceClient
 
         $class = '\\MaxMind\\MinFraud\\Validation\\Rules\\' . $className;
         $validator = new $class();
+
         try {
             $validator->check($values);
         } catch (ValidationException $exception) {
