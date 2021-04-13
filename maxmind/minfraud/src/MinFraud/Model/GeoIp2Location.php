@@ -18,8 +18,6 @@ class GeoIp2Location extends Location
 {
     /**
      * @internal
-     *
-     * @var array<string>
      */
     protected $validAttributes = [
         'accuracyRadius',

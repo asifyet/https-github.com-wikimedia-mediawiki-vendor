@@ -15,8 +15,6 @@ class EmailDomain extends AbstractModel
 {
     /**
      * @internal
-     *
-     * @var string|null
      */
     protected $firstSeen;
 

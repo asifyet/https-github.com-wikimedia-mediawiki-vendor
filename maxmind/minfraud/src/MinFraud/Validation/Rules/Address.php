@@ -11,7 +11,7 @@ use Respect\Validation\Validator as v;
  */
 trait Address
 {
-    public static function keys(): array
+    public static function keys()
     {
         return [
             v::key('address', new IntOrString(), false),

@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9e273fda5aee5f1da53f8bf3ce10d8378114b4cc',
+    'reference' => '74932bca28f592fef026bcd49158609938344c5e',
     'name' => 'mediawiki/core',
   ),
   'versions' => 
@@ -139,30 +139,30 @@
     ),
     'maxmind-db/reader' => 
     array (
-      'pretty_version' => 'v1.10.0',
-      'version' => '1.10.0.0',
+      'pretty_version' => 'v1.8.0',
+      'version' => '1.8.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '07f84d969cfc527ce49388558a366ad376f1f35c',
+      'reference' => 'b566d429ac9aec10594b0935be8ff38302f8d5c8',
     ),
     'maxmind/minfraud' => 
     array (
-      'pretty_version' => 'v1.17.0',
-      'version' => '1.17.0.0',
+      'pretty_version' => 'v1.15.0',
+      'version' => '1.15.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7b5297c38a0fb9c3808161395d96611882306b03',
+      'reference' => '6f66cb8cbd47da84bf9b6491f5e8d484a6a00afe',
     ),
     'maxmind/web-service-common' => 
     array (
-      'pretty_version' => 'v0.8.1',
-      'version' => '0.8.1.0',
+      'pretty_version' => 'v0.8.0',
+      'version' => '0.8.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '32f274051c543fc865e5a84d3a2c703913641ea8',
+      'reference' => 'ba67d9532cfaf499bd71774b8170d05df4f75fb7',
     ),
     'mediawiki/core' => 
     array (
@@ -171,7 +171,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9e273fda5aee5f1da53f8bf3ce10d8378114b4cc',
+      'reference' => '74932bca28f592fef026bcd49158609938344c5e',
     ),
     'mediawiki/mediawiki' => 
     array (
@@ -363,23 +363,14 @@
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
     ),
-    'respect/stringifier' => 
-    array (
-      'pretty_version' => '0.2.0',
-      'version' => '0.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e55af3c8aeaeaa2abb5fa47a58a8e9688cc23b59',
-    ),
     'respect/validation' => 
     array (
-      'pretty_version' => '2.2.3',
-      'version' => '2.2.3.0',
+      'pretty_version' => '1.1.31',
+      'version' => '1.1.31.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4c21a7ffc9a4915673cb2c2843963919e664e627',
+      'reference' => '45d109fc830644fecc1145200d6351ce4f2769d0',
     ),
     'roundcube/plugin-installer' => 
     array (

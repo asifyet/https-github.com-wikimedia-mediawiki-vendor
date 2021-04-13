@@ -29,7 +29,6 @@ return array(
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'SmashPig\\' => array($vendorDir . '/wikimedia/smash-pig'),
     'Respect\\Validation\\' => array($vendorDir . '/respect/validation/library'),
-    'Respect\\Stringifier\\' => array($vendorDir . '/respect/stringifier/src'),
     'RemexHtml\\' => array($vendorDir . '/wikimedia/remex-html/RemexHtml'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),

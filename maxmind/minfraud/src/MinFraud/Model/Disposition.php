@@ -21,15 +21,11 @@ class Disposition extends AbstractModel
 {
     /**
      * @internal
-     *
-     * @var string|null
      */
     protected $action;
 
     /**
      * @internal
-     *
-     * @var string|null
      */
     protected $reason;
 

@@ -31,29 +31,21 @@ class Device extends AbstractModel
 {
     /**
      * @internal
-     *
-     * @var float|null
      */
     protected $confidence;
 
     /**
      * @internal
-     *
-     * @var string|null
      */
     protected $id;
 
     /**
      * @internal
-     *
-     * @var string|null
      */
     protected $lastSeen;
 
     /**
      * @internal
-     *
-     * @var string|null
      */
     protected $localTime;
 

@@ -11,13 +11,11 @@ use GeoIp2\Record\Country;
  *
  * @property-read bool $isHighRisk This value is true if the IP country is high
  * risk. <b>Deprecated effective August 29, 2019.</b>
- */
+ **/
 class GeoIp2Country extends Country
 {
     /**
      * @internal
-     *
-     * @var array<string>
      */
     protected $validAttributes = [
         'confidence',
@@ -25,7 +23,9 @@ class GeoIp2Country extends Country
         'isInEuropeanUnion',
         'isoCode',
 
-        // @deprecated
+        /*
+         * @deprecated
+         */
         'isHighRisk',
         'names',
     ];

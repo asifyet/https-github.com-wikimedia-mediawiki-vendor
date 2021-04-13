@@ -17,10 +17,8 @@ abstract class AbstractModel implements \JsonSerializable
      * @param array      $locales  list of locale codes to use in name property from
      *                             most preferred to least preferred
      */
-    // @phpstan-ignore-next-line
     public function __construct(?array $response, array $locales = ['en'])
     {
-        // @phpstan-ignore-next-line
         $this->rawResponse = $response;
     }
 
@@ -49,7 +47,7 @@ abstract class AbstractModel implements \JsonSerializable
     public function __get(string $attr)
     {
         if ($attr !== 'instance' && property_exists($this, $attr)) {
-            return $this->{$attr};
+            return $this->$attr;
         }
 
         throw new \RuntimeException("Unknown attribute: $attr");
@@ -64,7 +62,7 @@ abstract class AbstractModel implements \JsonSerializable
      */
     public function __isset(string $attr): bool
     {
-        return isset($this->{$attr});
+        return isset($this->$attr);
     }
 
     /**
@@ -72,7 +70,6 @@ abstract class AbstractModel implements \JsonSerializable
      */
     public function jsonSerialize(): ?array
     {
-        // @phpstan-ignore-next-line
         return $this->rawResponse;
     }
 }

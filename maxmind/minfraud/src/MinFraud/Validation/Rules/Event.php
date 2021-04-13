@@ -14,13 +14,15 @@ class Event extends AbstractWrapper
 {
     public function __construct()
     {
-        parent::__construct(v::keySet(
+        $this->validatable = v::keySet(
             v::key('shop_id', v::stringType(), false),
             v::key(
                 'time',
-                v::anyOf(
-                    v::dateTime(\DateTime::RFC3339),
-                    v::dateTime(\DateTime::RFC3339_EXTENDED)
+                v::oneOf(
+                    v::date(\DateTime::RFC3339),
+                    // This is the same as DateTime::RFC3339_EXTENDED,
+                    // but PHP 5.6 doesn't have that.
+                    v::date('Y-m-d\TH:i:s.vP')
                 ),
                 false
             ),
@@ -42,6 +44,6 @@ class Event extends AbstractWrapper
                 false
             ),
             v::key('transaction_id', v::stringType(), false)
-        ));
+        );
     }
 }

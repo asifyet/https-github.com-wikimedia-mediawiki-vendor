@@ -5,47 +5,26 @@
  *
  * (c) Alexandre Gomes Gaigalas <alexandre@gaigalas.net>
  *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
+ * For the full copyright and license information, please view the "LICENSE.md"
+ * file that was distributed with this source code.
  */
-
-declare(strict_types=1);
 
 namespace Respect\Validation;
 
-use Respect\Validation\Exceptions\ValidationException;
-
 /** Interface for validation rules */
-/**
- * @author Alexandre Gomes Gaigalas <alexandre@gaigalas.net>
- * @author Henrique Moody <henriquemoody@gmail.com>
- */
 interface Validatable
 {
-    /**
-     * @param mixed $input
-     */
-    public function assert($input): void;
+    public function assert($input);
 
-    /**
-     * @param mixed $input
-     */
-    public function check($input): void;
+    public function check($input);
 
-    public function getName(): ?string;
+    public function getName();
 
-    /**
-     * @param mixed $input
-     * @param mixed[] $extraParameters
-     */
-    public function reportError($input, array $extraParameters = []): ValidationException;
+    public function reportError($input, array $relatedExceptions = []);
 
-    public function setName(string $name): Validatable;
+    public function setName($name);
 
-    public function setTemplate(string $template): Validatable;
+    public function setTemplate($template);
 
-    /**
-     * @param mixed $input
-     */
-    public function validate($input): bool;
+    public function validate($input);
 }

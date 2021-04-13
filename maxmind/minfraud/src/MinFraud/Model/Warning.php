@@ -46,22 +46,16 @@ class Warning extends AbstractModel
 {
     /**
      * @internal
-     *
-     * @var string
      */
     protected $code;
 
     /**
      * @internal
-     *
-     * @var string
      */
     protected $warning;
 
     /**
      * @internal
-     *
-     * @var string
      */
     protected $inputPointer;
 

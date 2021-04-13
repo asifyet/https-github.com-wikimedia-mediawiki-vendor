@@ -5,93 +5,68 @@
  *
  * (c) Alexandre Gomes Gaigalas <alexandre@gaigalas.net>
  *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
+ * For the full copyright and license information, please view the "LICENSE.md"
+ * file that was distributed with this source code.
  */
-
-declare(strict_types=1);
 
 namespace Respect\Validation\Rules;
 
-use Respect\Validation\Exceptions\SfException;
-use Respect\Validation\Exceptions\ValidationException;
+use ReflectionClass;
+use ReflectionException;
+use Respect\Validation\Exceptions\ComponentException;
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validation;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-use function trim;
-
-/**
- * Validate the input with a Symfony Validator (>=4.0 or >=3.0) Constraint.
- *
- * @author Alexandre Gomes Gaigalas <alexandre@gaigalas.net>
- * @author Augusto Pascutti <augusto@phpsp.org.br>
- * @author Henrique Moody <henriquemoody@gmail.com>
- * @author Hugo Hamon <hugo.hamon@sensiolabs.com>
- */
-final class Sf extends AbstractRule
+class Sf extends AbstractRule
 {
-    /**
-     * @var Constraint
-     */
+    const SYMFONY_CONSTRAINT_NAMESPACE = 'Symfony\Component\Validator\Constraints\%s';
+    public $name;
     private $constraint;
 
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
-
-    /**
-     * Initializes the rule with the Constraint and the Validator.
-     *
-     * In the the Validator is not defined, tries to create one.
-     */
-    public function __construct(Constraint $constraint, ?ValidatorInterface $validator = null)
+    public function __construct($name, $params = [])
     {
-        $this->constraint = $constraint;
-        $this->validator = $validator ?: Validation::createValidator();
+        $this->name = ucfirst($name);
+        $this->constraint = $this->createSymfonyConstraint($this->name, $params);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function assert($input): void
+    private function createSymfonyConstraint($constraintName, $constraintConstructorParameters = [])
     {
-        /** @var ConstraintViolationList $violations */
-        $violations = $this->validator->validate($input, $this->constraint);
-        if ($violations->count() === 0) {
-            return;
-        }
-
-        if ($violations->count() === 1) {
-            throw $this->reportError($input, ['violations' => $violations[0]->getMessage()]);
-        }
-
-        throw $this->reportError($input, ['violations' => trim($violations->__toString())]);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function reportError($input, array $extraParams = []): ValidationException
-    {
-        $exception = parent::reportError($input, $extraParams);
-        if (isset($extraParams['violations'])) {
-            $exception->updateTemplate($extraParams['violations']);
-        }
-
-        return $exception;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function validate($input): bool
-    {
+        $fullClassName = sprintf(self::SYMFONY_CONSTRAINT_NAMESPACE, $constraintName);
         try {
-            $this->assert($input);
-        } catch (SfException $exception) {
+            $constraintReflection = new ReflectionClass($fullClassName);
+        } catch (ReflectionException $previousException) {
+            $baseExceptionMessage = 'Symfony/Validator constraint "%s" does not exist.';
+            $exceptionMessage = sprintf($baseExceptionMessage, $constraintName);
+            throw new ComponentException($exceptionMessage, 0, $previousException);
+        }
+        if ($constraintReflection->hasMethod('__construct')) {
+            return $constraintReflection->newInstanceArgs($constraintConstructorParameters);
+        }
+
+        return $constraintReflection->newInstance();
+    }
+
+    private function returnViolationsForConstraint($valueToValidate, Constraint $symfonyConstraint)
+    {
+        $validator = Validation::createValidator(); // You gotta love those Symfony namings
+
+        return $validator->validateValue($valueToValidate, $symfonyConstraint);
+    }
+
+    public function assert($input)
+    {
+        $violations = $this->returnViolationsForConstraint($input, $this->constraint);
+        if (count($violations) == 0) {
+            return true;
+        }
+
+        throw $this->reportError((string) $violations);
+    }
+
+    public function validate($input)
+    {
+        $violations = $this->returnViolationsForConstraint($input, $this->constraint);
+        if (count($violations)) {
             return false;
         }
 

@@ -14,9 +14,9 @@ class Account extends AbstractWrapper
 {
     public function __construct()
     {
-        parent::__construct(v::keySet(
+        $this->validatable = v::keySet(
             v::key('user_id', new IntOrString(), false),
             v::key('username_md5', new Md5(), false)
-        ));
+        );
     }
 }

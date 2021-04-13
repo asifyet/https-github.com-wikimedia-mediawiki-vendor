@@ -24,7 +24,6 @@ class Util
                 return $value;
             }
         }
-
         throw new InvalidDatabaseException(
             'The MaxMind DB file contains bad data'
         );

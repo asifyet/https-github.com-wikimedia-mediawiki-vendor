@@ -18,15 +18,11 @@ class ShippingAddress extends Address
 {
     /**
      * @internal
-     *
-     * @var bool|null
      */
     protected $isHighRisk;
 
     /**
      * @internal
-     *
-     * @var int|null
      */
     protected $distanceToBillingAddress;
 

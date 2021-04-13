@@ -14,7 +14,7 @@ class TransactionReport extends AbstractWrapper
 {
     public function __construct()
     {
-        parent::__construct(v::keySet(
+        $this->validatable = v::keySet(
             v::key('chargeback_code', v::stringType(), false),
             v::key('ip_address', v::ip(), true),
             v::key('maxmind_id', v::stringType()->length(8, 8), false),
@@ -37,6 +37,6 @@ class TransactionReport extends AbstractWrapper
                 true
             ),
             v::key('transaction_id', v::stringType(), false)
-        ));
+        );
     }
 }
