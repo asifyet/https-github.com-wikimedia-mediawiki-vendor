@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '74932bca28f592fef026bcd49158609938344c5e',
+    'reference' => '60496afbabb232d1cd52de6761d2b24196989936',
     'name' => 'mediawiki/core',
   ),
   'versions' => 
@@ -195,13 +195,13 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '74932bca28f592fef026bcd49158609938344c5e',
+      'reference' => '60496afbabb232d1cd52de6761d2b24196989936',
     ),
     'mediawiki/mediawiki' => 
     array (
       'provided' => 
       array (
-        0 => '1.35.1',
+        0 => '1.35.2',
       ),
     ),
     'monolog/monolog' => 
@@ -622,12 +622,12 @@ private static $installed = array (
     ),
     'wikimedia/parsoid' => 
     array (
-      'pretty_version' => 'v0.12.1',
-      'version' => '0.12.1.0',
+      'pretty_version' => 'v0.12.2',
+      'version' => '0.12.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6e7e27141400d820c6f62914ec461bf707a9afe7',
+      'reference' => '15169a678f9f468ff6465035a32f28e8ec82003f',
     ),
     'wikimedia/password-blacklist' => 
     array (
