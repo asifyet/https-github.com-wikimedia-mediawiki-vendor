@@ -37,6 +37,7 @@ return array(
     'Predis\\' => array($vendorDir . '/predis/predis/src'),
     'Pleo\\BloomFilter\\' => array($vendorDir . '/pleonasm/bloom-filter/src'),
     'PayWithAmazon\\' => array($vendorDir . '/amzn/login-and-pay-with-amazon-sdk-php/PayWithAmazon'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'MaxMind\\WebService\\' => array($vendorDir . '/maxmind/web-service-common/src/WebService'),
     'MaxMind\\Exception\\' => array($vendorDir . '/maxmind/web-service-common/src/Exception'),

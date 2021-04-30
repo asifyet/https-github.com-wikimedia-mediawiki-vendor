@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '60496afbabb232d1cd52de6761d2b24196989936',
+    'reference' => '44570561f262d807c4623253323dc52fd5a78cb3',
     'name' => 'mediawiki/core',
   ),
   'versions' => 
@@ -195,7 +195,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '60496afbabb232d1cd52de6761d2b24196989936',
+      'reference' => '44570561f262d807c4623253323dc52fd5a78cb3',
     ),
     'mediawiki/mediawiki' => 
     array (
@@ -296,12 +296,12 @@ private static $installed = array (
     ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v5.2.28',
-      'version' => '5.2.28.0',
+      'pretty_version' => 'v6.4.1',
+      'version' => '6.4.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'acba50393dd03da69a50226c139722af8b153b11',
+      'reference' => '9256f12d8fb0cd0500f93b19e18c356906cbed3d',
     ),
     'pleonasm/bloom-filter' => 
     array (
@@ -701,12 +701,12 @@ private static $installed = array (
     ),
     'wikimedia/smash-pig' => 
     array (
-      'pretty_version' => 'v0.6.9',
-      'version' => '0.6.9.0',
+      'pretty_version' => 'v0.6.10',
+      'version' => '0.6.10.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1fcd30ff0727695d4262788479bfd853b9eef831',
+      'reference' => '49cc82c6f0495fbc10567dcd5fd1c9ee4cb77fb9',
     ),
     'wikimedia/timestamp' => 
     array (

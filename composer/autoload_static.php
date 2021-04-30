@@ -65,6 +65,7 @@ class ComposerStaticInit_mediawiki_vendor
             'Predis\\' => 7,
             'Pleo\\BloomFilter\\' => 17,
             'PayWithAmazon\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -227,6 +228,10 @@ class ComposerStaticInit_mediawiki_vendor
         'PayWithAmazon\\' => 
         array (
             0 => __DIR__ . '/..' . '/amzn/login-and-pay-with-amazon-sdk-php/PayWithAmazon',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Monolog\\' => 
         array (
@@ -549,7 +554,6 @@ class ComposerStaticInit_mediawiki_vendor
         'DonorFullName' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DonorFullName.php',
         'DonorLanguage' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DonorLanguage.php',
         'DonorLocale' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/DonorLocale.php',
-        'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'EmployerSearchAPI' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/employerSearch.api.php',
         'EncodingMangler' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/EncodingMangler.php',
         'EndowmentHooks' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/EndowmentHooks.php',
@@ -1072,9 +1076,11 @@ class ComposerStaticInit_mediawiki_vendor
         'PEAR' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/PEAR.php',
         'PEAR_ErrorStack' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/PEAR/ErrorStack.php',
         'PEAR_Exception' => __DIR__ . '/..' . '/pear/pear_exception/PEAR/Exception.php',
-        'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
-        'PHPMailerOAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauth.php',
-        'PHPMailerOAuthGoogle' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PHPQueue\\Backend\\AmazonS3' => __DIR__ . '/..' . '/coderkungfu/php-queue/src/PHPQueue/Backend/AmazonS3.php',
         'PHPQueue\\Backend\\AmazonSQS' => __DIR__ . '/..' . '/coderkungfu/php-queue/src/PHPQueue/Backend/AmazonSQS.php',
         'PHPQueue\\Backend\\Aws\\AmazonS3V1' => __DIR__ . '/..' . '/coderkungfu/php-queue/src/PHPQueue/Backend/Aws/AmazonS3V1.php',
@@ -1116,7 +1122,6 @@ class ComposerStaticInit_mediawiki_vendor
         'PHPQueue\\REST' => __DIR__ . '/..' . '/coderkungfu/php-queue/src/PHPQueue/REST.php',
         'PHPQueue\\Runner' => __DIR__ . '/..' . '/coderkungfu/php-queue/src/PHPQueue/Runner.php',
         'PHPQueue\\Worker' => __DIR__ . '/..' . '/coderkungfu/php-queue/src/PHPQueue/Worker.php',
-        'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
         'PayPalCountry' => __DIR__ . '/../..' . '/extensions/DonationInterface/paypal_gateway/PayPalCountry.php',
         'PayWithAmazon\\ArrayUtil' => __DIR__ . '/..' . '/amzn/login-and-pay-with-amazon-sdk-php/PayWithAmazon/ArrayUtil.php',
         'PayWithAmazon\\BaseClient' => __DIR__ . '/..' . '/amzn/login-and-pay-with-amazon-sdk-php/PayWithAmazon/BaseClient.php',
@@ -2327,7 +2332,6 @@ class ComposerStaticInit_mediawiki_vendor
         'RiskScore' => __DIR__ . '/../..' . '/extensions/DonationInterface/adyen_gateway/RiskScore.php',
         'RunningStat\\PSquare' => __DIR__ . '/..' . '/wikimedia/running-stat/src/RunningStat/PSquare.php',
         'RunningStat\\RunningStat' => __DIR__ . '/..' . '/wikimedia/running-stat/src/RunningStat/RunningStat.php',
-        'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
         'SmashPig\\Core\\Actions\\IListenerMessageAction' => __DIR__ . '/..' . '/wikimedia/smash-pig/Core/Actions/IListenerMessageAction.php',
         'SmashPig\\Core\\Actions\\IncomingMessage' => __DIR__ . '/..' . '/wikimedia/smash-pig/Core/Actions/IncomingMessage.php',
         'SmashPig\\Core\\ApiException' => __DIR__ . '/..' . '/wikimedia/smash-pig/Core/ApiException.php',
@@ -3127,8 +3131,6 @@ class ComposerStaticInit_mediawiki_vendor
         'WmfFramework_Drupal' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/WmfFramework.drupal.php',
         'WmfFramework_Mediawiki' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/WmfFramework.mediawiki.php',
         'lessc' => __DIR__ . '/..' . '/wikimedia/less.php/lessc.inc.php',
-        'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
-        'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
