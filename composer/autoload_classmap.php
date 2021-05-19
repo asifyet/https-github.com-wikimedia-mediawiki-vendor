@@ -50,6 +50,7 @@ return array(
     'Cdb\\Writer' => $vendorDir . '/wikimedia/cdb/src/Writer.php',
     'Cdb\\Writer\\DBA' => $vendorDir . '/wikimedia/cdb/src/Writer/DBA.php',
     'Cdb\\Writer\\PHP' => $vendorDir . '/wikimedia/cdb/src/Writer/PHP.php',
+    'CiviproxyConnect' => $baseDir . '/extensions/DonationInterface/extras/civiproxy/CiviproxyConnect.php',
     'CleanupRecurringLength' => $baseDir . '/extensions/DonationInterface/paypal_gateway/CleanupRecurringLength.php',
     'ClientErrorApi' => $baseDir . '/extensions/DonationInterface/gateway_common/clientError.api.php',
     'ClientSideValidationHelper' => $baseDir . '/extensions/DonationInterface/gateway_common/ClientSideValidationHelper.php',

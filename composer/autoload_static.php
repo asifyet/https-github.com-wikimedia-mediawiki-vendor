@@ -423,6 +423,7 @@ class ComposerStaticInit_mediawiki_vendor
         'Cdb\\Writer' => __DIR__ . '/..' . '/wikimedia/cdb/src/Writer.php',
         'Cdb\\Writer\\DBA' => __DIR__ . '/..' . '/wikimedia/cdb/src/Writer/DBA.php',
         'Cdb\\Writer\\PHP' => __DIR__ . '/..' . '/wikimedia/cdb/src/Writer/PHP.php',
+        'CiviproxyConnect' => __DIR__ . '/../..' . '/extensions/DonationInterface/extras/civiproxy/CiviproxyConnect.php',
         'CleanupRecurringLength' => __DIR__ . '/../..' . '/extensions/DonationInterface/paypal_gateway/CleanupRecurringLength.php',
         'ClientErrorApi' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/clientError.api.php',
         'ClientSideValidationHelper' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/ClientSideValidationHelper.php',
