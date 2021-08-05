@@ -2,8 +2,10 @@
 
 namespace SmashPig\PaymentProviders\Ingenico;
 
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use Smashpig\Core\ApiException;
-use SmashPig\Core\Cache\CacheHelper;
+use SmashPig\Core\Context;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -19,9 +21,17 @@ class BankPaymentProvider extends PaymentProvider {
 	 */
 	protected $cacheParameters;
 
+	/**
+	 * @var CacheItemPoolInterface
+	 */
+	protected $cache;
+
 	public function __construct( array $options = [] ) {
 		parent::__construct( $options );
 		$this->cacheParameters = $options['cache-parameters'];
+		// FIXME: provide objects in constructor
+		$config = Context::get()->getGlobalConfiguration();
+		$this->cache = $config->object( 'cache' );
 	}
 
 	/**
@@ -37,7 +47,9 @@ class BankPaymentProvider extends PaymentProvider {
 	 */
 	public function getBankList( string $country, string $currency, int $productId = 809 ): array {
 		$cacheKey = $this->makeCacheKey( $country, $currency, $productId );
-		$bankLookupCallback = function () use ( $country, $currency, $productId ) {
+		$cacheItem = $this->cache->getItem( $cacheKey );
+
+		if ( !$cacheItem->isHit() || $this->shouldBeExpired( $cacheItem ) ) {
 			$query = [
 				'countryCode' => $country,
 				'currencyCode' => $currency
@@ -53,14 +65,39 @@ class BankPaymentProvider extends PaymentProvider {
 					$banks[$entry['issuerId']] = $entry['issuerName'];
 				}
 			}
-			return $banks;
-		};
-		return CacheHelper::getWithSetCallback( $cacheKey, $this->cacheParameters['duration'], $bankLookupCallback );
+			$duration = $this->cacheParameters['duration'];
+			$cacheItem->set( [
+				'value' => $banks,
+				'expiration' => time() + $duration
+			] );
+			$cacheItem->expiresAfter( $duration );
+			$this->cache->save( $cacheItem );
+		}
+		$cached = $cacheItem->get();
+		return $cached['value'];
 	}
 
 	protected function makeCacheKey( string $country, string $currency, int $productId ): string {
 		$base = $this->cacheParameters['key-base'];
 		return "{$base}_{$country}_{$currency}_{$productId}";
+	}
+
+	/**
+	 * Lame workaround to mysterious Memcache non-expiry bug. Memcache
+	 * seems to hold things for too long in certain circumstances.
+	 * TODO: move to Core if we need to use this elsewhere. Though another
+	 * layer of cache wrapping seems unfun.
+	 *
+	 * @param CacheItemInterface $cacheItem
+	 * @return bool True if the item should have been dropped by Memcache
+	 */
+	protected function shouldBeExpired( CacheItemInterface $cacheItem ): bool {
+		$value = $cacheItem->get();
+		if ( !isset( $value['expiration'] ) ) {
+			return true;
+		}
+		$expiration = $value['expiration'];
+		return $expiration < time();
 	}
 
 	protected function checkForErrors( array $response ) {

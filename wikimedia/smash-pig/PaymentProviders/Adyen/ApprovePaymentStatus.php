@@ -15,7 +15,6 @@ class ApprovePaymentStatus implements StatusNormalizer {
 	public function normalizeStatus( string $adyenStatus ): string {
 		switch ( $adyenStatus ) {
 			case '[capture-received]':
-			case 'received':
 				$status = FinalStatus::COMPLETE;
 				break;
 			default:

@@ -15,7 +15,6 @@ class CreatePaymentStatus implements StatusNormalizer {
 	public function normalizeStatus( string $adyenStatus ): string {
 		switch ( $adyenStatus ) {
 			case 'Authorised':
-			case 'RedirectShopper':
 				$status = FinalStatus::PENDING_POKE;
 				break;
 			case 'Refused':

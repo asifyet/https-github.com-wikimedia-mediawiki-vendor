@@ -12,10 +12,10 @@ class AdyenTestConfiguration extends TestingProviderConfiguration {
 	}
 
 	public static function getSuccessfulApproveResult() {
-		return [
-			'pspReference' => '00000000000000AB',
-			'status' => 'received',
-		];
+		return (object)[ 'captureResult' => (object)[
+			'response' => '[capture-received]',
+			'pspReference' => '00000000000000AB'
+		] ];
 	}
 
 	public static function getSuccessfulCancelResult() {
