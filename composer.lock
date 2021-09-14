@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "975e4d5d10194983ed2e519aa8e340e4",
+    "content-hash": "2bd276c879e04d674559f235a2315078",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -2264,16 +2264,16 @@
         },
         {
             "name": "wikimedia/parsoid",
-            "version": "v0.13.0",
+            "version": "v0.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/parsoid.git",
-                "reference": "da46f35324478afe319b311044a9d17738a7cb29"
+                "reference": "abbea0680ebd5faa0867494710952358a5671447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/parsoid/zipball/da46f35324478afe319b311044a9d17738a7cb29",
-                "reference": "da46f35324478afe319b311044a9d17738a7cb29",
+                "url": "https://api.github.com/repos/wikimedia/parsoid/zipball/abbea0680ebd5faa0867494710952358a5671447",
+                "reference": "abbea0680ebd5faa0867494710952358a5671447",
                 "shasum": ""
             },
             "require": {
@@ -2288,7 +2288,7 @@
                 "wikimedia/object-factory": "^3.0.0",
                 "wikimedia/remex-html": "^2.2.0|^2.3.0",
                 "wikimedia/scoped-callback": "^3.0.0",
-                "wikimedia/wikipeg": "^2.0.5",
+                "wikimedia/wikipeg": "2.0.5",
                 "wikimedia/zest-css": "^1.1.5"
             },
             "conflict": {
@@ -2335,7 +2335,12 @@
                 "mediawiki",
                 "parsoid"
             ],
-            "time": "2021-04-21T20:43:19+00:00"
+            "support": {
+                "irc": "irc://irc.freenode.net/mediawiki-parsoid",
+                "source": "https://github.com/wikimedia/parsoid/tree/v0.13.1",
+                "wiki": "https://www.mediawiki.org/wiki/Parsoid"
+            },
+            "time": "2021-09-23T07:17:20+00:00"
         },
         {
             "name": "wikimedia/php-session-serializer",
@@ -3008,6 +3013,9 @@
                 "MIT"
             ],
             "description": "Parser generator for JavaScript and PHP",
+            "support": {
+                "source": "https://github.com/wikimedia/wikipeg/tree/2.0.5"
+            },
             "time": "2020-12-17T21:12:05+00:00"
         },
         {
@@ -3330,16 +3338,16 @@
         },
         {
             "name": "swaggest/json-diff",
-            "version": "v3.8.1",
+            "version": "v3.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swaggest/json-diff.git",
-                "reference": "d2184358c5ef5ecaa1f6b4c2bce175fac2d25670"
+                "reference": "d223be0ee90cd6001c21af39573fbc2f600a0bbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/d2184358c5ef5ecaa1f6b4c2bce175fac2d25670",
-                "reference": "d2184358c5ef5ecaa1f6b4c2bce175fac2d25670",
+                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/d223be0ee90cd6001c21af39573fbc2f600a0bbe",
+                "reference": "d223be0ee90cd6001c21af39573fbc2f600a0bbe",
                 "shasum": ""
             },
             "require": {
@@ -3365,7 +3373,7 @@
                 }
             ],
             "description": "JSON diff/rearrange/patch/pointer library for PHP",
-            "time": "2020-09-25T17:47:07+00:00"
+            "time": "2021-09-17T13:39:44+00:00"
         },
         {
             "name": "swaggest/json-schema",
