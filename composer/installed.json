@@ -2415,12 +2415,12 @@
         "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/wikimedia/WaitConditionLoop.git",
+            "url": "https://github.com/wikimedia/wait-condition-loop.git",
             "reference": "0321b8ca6a0f701f96e04e5e8e6d3e244ab05338"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wikimedia/WaitConditionLoop/zipball/0321b8ca6a0f701f96e04e5e8e6d3e244ab05338",
+            "url": "https://api.github.com/repos/wikimedia/wait-condition-loop/zipball/0321b8ca6a0f701f96e04e5e8e6d3e244ab05338",
             "reference": "0321b8ca6a0f701f96e04e5e8e6d3e244ab05338",
             "shasum": ""
         },

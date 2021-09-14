@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "106ecc8fc973b4d1a23548dd9d569a32",
+    "content-hash": "bdbd4947485fb3e795bf507ef8962b79",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -2333,12 +2333,12 @@
             "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/wikimedia/WaitConditionLoop.git",
+                "url": "https://github.com/wikimedia/wait-condition-loop.git",
                 "reference": "0321b8ca6a0f701f96e04e5e8e6d3e244ab05338"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/WaitConditionLoop/zipball/0321b8ca6a0f701f96e04e5e8e6d3e244ab05338",
+                "url": "https://api.github.com/repos/wikimedia/wait-condition-loop/zipball/0321b8ca6a0f701f96e04e5e8e6d3e244ab05338",
                 "reference": "0321b8ca6a0f701f96e04e5e8e6d3e244ab05338",
                 "shasum": ""
             },
@@ -2726,16 +2726,16 @@
         },
         {
             "name": "swaggest/json-diff",
-            "version": "v3.8.1",
+            "version": "v3.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swaggest/json-diff.git",
-                "reference": "d2184358c5ef5ecaa1f6b4c2bce175fac2d25670"
+                "reference": "bb3e3b4e9d842bb2e48f31ea568d0459968d1d42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/d2184358c5ef5ecaa1f6b4c2bce175fac2d25670",
-                "reference": "d2184358c5ef5ecaa1f6b4c2bce175fac2d25670",
+                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/bb3e3b4e9d842bb2e48f31ea568d0459968d1d42",
+                "reference": "bb3e3b4e9d842bb2e48f31ea568d0459968d1d42",
                 "shasum": ""
             },
             "require": {
@@ -2761,7 +2761,7 @@
                 }
             ],
             "description": "JSON diff/rearrange/patch/pointer library for PHP",
-            "time": "2020-09-25T17:47:07+00:00"
+            "time": "2021-09-25T22:09:03+00:00"
         },
         {
             "name": "swaggest/json-schema",
