@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "980556e36c6605550f16fa8ead5555a3",
+    "content-hash": "bde5979c4e7e99c5c358e90f2092f74c",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -1973,56 +1973,6 @@
             "time": "2021-02-24T05:28:06+00:00"
         },
         {
-            "name": "wikimedia/css-sanitizer",
-            "version": "v3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wikimedia/css-sanitizer.git",
-                "reference": "718e2a79fc3fec4c7a43193b5e2ac3bae6756ee4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/css-sanitizer/zipball/718e2a79fc3fec4c7a43193b5e2ac3bae6756ee4",
-                "reference": "718e2a79fc3fec4c7a43193b5e2ac3bae6756ee4",
-                "shasum": ""
-            },
-            "require": {
-                "ext-iconv": "*",
-                "ext-mbstring": "*",
-                "php": ">=7.2.0",
-                "wikimedia/at-ease": "^2.0.0",
-                "wikimedia/utfnormal": "2.0.0 || ^3.0.1"
-            },
-            "require-dev": {
-                "mediawiki/mediawiki-codesniffer": "35.0.0",
-                "mediawiki/mediawiki-phan-config": "0.10.6",
-                "mediawiki/minus-x": "1.1.1",
-                "php-parallel-lint/php-console-highlighter": "0.5.0",
-                "php-parallel-lint/php-parallel-lint": "1.2.0",
-                "phpunit/phpunit": "^8.5",
-                "wikimedia/testing-access-wrapper": "1.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Wikimedia\\CSS\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Brad Jorsch",
-                    "email": "bjorsch@wikimedia.org"
-                }
-            ],
-            "description": "Classes to parse and sanitize CSS",
-            "homepage": "https://www.mediawiki.org/wiki/Css-sanitizer",
-            "time": "2021-03-21T17:30:58+00:00"
-        },
-        {
             "name": "wikimedia/dodo",
             "version": "v0.3.0",
             "source": {
@@ -3600,16 +3550,16 @@
         },
         {
             "name": "swaggest/json-diff",
-            "version": "v3.8.1",
+            "version": "v3.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swaggest/json-diff.git",
-                "reference": "d2184358c5ef5ecaa1f6b4c2bce175fac2d25670"
+                "reference": "d223be0ee90cd6001c21af39573fbc2f600a0bbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/d2184358c5ef5ecaa1f6b4c2bce175fac2d25670",
-                "reference": "d2184358c5ef5ecaa1f6b4c2bce175fac2d25670",
+                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/d223be0ee90cd6001c21af39573fbc2f600a0bbe",
+                "reference": "d223be0ee90cd6001c21af39573fbc2f600a0bbe",
                 "shasum": ""
             },
             "require": {
@@ -3635,7 +3585,7 @@
                 }
             ],
             "description": "JSON diff/rearrange/patch/pointer library for PHP",
-            "time": "2020-09-25T17:47:07+00:00"
+            "time": "2021-09-17T13:39:44+00:00"
         },
         {
             "name": "swaggest/json-schema",
