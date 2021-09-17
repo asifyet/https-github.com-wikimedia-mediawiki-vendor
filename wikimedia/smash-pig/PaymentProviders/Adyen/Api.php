@@ -87,6 +87,7 @@ class Api {
 	 *
 	 * @param array $params
 	 * amount, currency, encrypted_payment_details (blob from front-end)
+	 * @throws \SmashPig\Core\ApiException
 	 */
 	public function createPaymentFromEncryptedDetails( $params ) {
 		// TODO: use txn template / mapping a la Ingenico?
@@ -154,6 +155,7 @@ class Api {
 	 *
 	 * @param array $params
 	 * amount, currency, payment_method, recurring_payment_token, processor_contact_id
+	 * @throws \SmashPig\Core\ApiException
 	 */
 	public function createPaymentFromToken( $params ) {
 		$restParams = [
@@ -187,6 +189,7 @@ class Api {
 	 *
 	 * @param array $params
 	 * amount, currency, value, issuer, returnUrl
+	 * @throws \SmashPig\Core\ApiException
 	 */
 	public function createDirectDebitPaymentFromCheckout( $params ) {
 		$restParams = [
@@ -205,12 +208,33 @@ class Api {
 		return $result['body'];
 	}
 
+	public function createApplePayPayment( $params ) {
+		$restParams = [
+			'amount' => $this->getArrayAmount( $params ),
+			'reference' => $params['order_id'],
+			'merchantAccount' => $this->account,
+			'paymentMethod' => [
+				'type' => 'applepay',
+				'applePayToken' => $params['payment_token']
+			]
+		];
+
+		$result = $this->makeRestApiCall(
+			$restParams,
+			'payments',
+			'POST'
+		);
+
+		return $result['body'];
+	}
+
 	/**
 	 * Gets more details when no final state has been reached
 	 * on the /payments call. Redirect payments will need this.
 	 *
 	 * @param string $redirectResult
-	 * details
+	 * @return array
+	 * @throws \SmashPig\Core\ApiException
 	 */
 	public function getPaymentDetails( $redirectResult ) {
 		$restParams = [
@@ -222,6 +246,9 @@ class Api {
 		return $result['body'];
 	}
 
+	/**
+	 * @throws \SmashPig\Core\ApiException
+	 */
 	public function getPaymentMethods( $params ) {
 		$restParams = [
 			'merchantAccount' => $this->account,
@@ -240,7 +267,8 @@ class Api {
 	 * Uses the rest API to return saved payment details
 	 *
 	 * @param string $shopperReference
-	 * shopperReference
+	 * @return array
+	 * @throws \SmashPig\Core\ApiException
 	 */
 	public function getSavedPaymentDetails( $shopperReference ) {
 		$restParams['merchantAccount'] = $this->account;
@@ -250,6 +278,9 @@ class Api {
 		return $result['body'];
 	}
 
+	/**
+	 * @throws \SmashPig\Core\ApiException
+	 */
 	protected function makeRestApiCall( $params, $path, $method ) {
 		$url = $this->restBaseUrl . '/' . $path;
 		$request = new OutboundRequest( $url, $method );
@@ -258,6 +289,7 @@ class Api {
 		$request->setHeader( 'content-type', 'application/json' );
 		$response = $request->execute();
 		$response['body'] = json_decode( $response['body'], true );
+		ExceptionMapper::throwOnAdyenError( $response['body'] );
 		return $response;
 	}
 
@@ -365,6 +397,7 @@ class Api {
 		try {
 			$result = $this->makeRestApiCall( $restParams, $path, 'POST' );
 		} catch ( \Exception $ex ) {
+			// FIXME shouldn't we let the ApiException bubble up?
 			Logger::error( 'REST capture request threw exception!', $params, $ex );
 			return false;
 		}
@@ -434,7 +467,7 @@ class Api {
 	 * @return int The amount in minor units
 	 */
 	private function getAmountInMinorUnits( float $amount, string $currency ): int {
-		if ( CurrencyRoundingHelper::isExponent3Currency( $currency ) ) {
+		if ( CurrencyRoundingHelper::isThreeDecimalCurrency( $currency ) ) {
 			$amount = $amount * 1000;
 		} elseif ( CurrencyRoundingHelper::isFractionalCurrency( $currency ) ) {
 			$amount = $amount * 100;
