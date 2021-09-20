@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8cc6d570bfbc70b9c1f684d41c06eb5",
+    "content-hash": "8c723328c31b558ae1b80b1a3b34b249",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -2410,16 +2410,16 @@
         },
         {
             "name": "wikimedia/parsoid",
-            "version": "v0.14.0-a18",
+            "version": "v0.14.0-a19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/parsoid.git",
-                "reference": "cfe9391c047b85feaf72f745f9b6ec0d34368d96"
+                "reference": "5102525d6f33ae4f2dc319fa7fa33cfd19335ea6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/parsoid/zipball/cfe9391c047b85feaf72f745f9b6ec0d34368d96",
-                "reference": "cfe9391c047b85feaf72f745f9b6ec0d34368d96",
+                "url": "https://api.github.com/repos/wikimedia/parsoid/zipball/5102525d6f33ae4f2dc319fa7fa33cfd19335ea6",
+                "reference": "5102525d6f33ae4f2dc319fa7fa33cfd19335ea6",
                 "shasum": ""
             },
             "require": {
@@ -2486,7 +2486,7 @@
                 "mediawiki",
                 "parsoid"
             ],
-            "time": "2021-09-11T05:22:33+00:00"
+            "time": "2021-09-17T21:32:44+00:00"
         },
         {
             "name": "wikimedia/php-session-serializer",
