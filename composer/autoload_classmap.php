@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = $vendorDir;
 
 return array(
+    'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Base32\\Base32' => $vendorDir . '/christian-riesen/base32/src/Base32.php',
     'CLDRPluralRuleParser\\Converter' => $vendorDir . '/wikimedia/cldr-plural-rule-parser/src/Converter.php',
     'CLDRPluralRuleParser\\Converter\\Expression' => $vendorDir . '/wikimedia/cldr-plural-rule-parser/src/Converter/Expression.php',
@@ -608,10 +609,14 @@ return array(
     'Shellbox\\Shellbox' => $vendorDir . '/wikimedia/shellbox/src/Shellbox.php',
     'Shellbox\\ShellboxError' => $vendorDir . '/wikimedia/shellbox/src/ShellboxError.php',
     'Shellbox\\TempDirManager' => $vendorDir . '/wikimedia/shellbox/src/TempDirManager.php',
+    'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+    'Symfony\\Polyfill\\Php80\\Php80' => $vendorDir . '/symfony/polyfill-php80/Php80.php',
     'System' => $vendorDir . '/pear/pear-core-minimal/src/System.php',
+    'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
     'UtfNormal\\Constants' => $vendorDir . '/wikimedia/utfnormal/src/Constants.php',
     'UtfNormal\\Utils' => $vendorDir . '/wikimedia/utfnormal/src/Utils.php',
     'UtfNormal\\Validator' => $vendorDir . '/wikimedia/utfnormal/src/Validator.php',
+    'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     'WikiPEG\\DefaultTracer' => $vendorDir . '/wikimedia/wikipeg/src/DefaultTracer.php',
     'WikiPEG\\Expectation' => $vendorDir . '/wikimedia/wikipeg/src/Expectation.php',
     'WikiPEG\\InternalError' => $vendorDir . '/wikimedia/wikipeg/src/InternalError.php',
