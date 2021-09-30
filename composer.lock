@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c723328c31b558ae1b80b1a3b34b249",
+    "content-hash": "bc7dabc725db15400fbe3be37ee645e3",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -3495,16 +3495,16 @@
         },
         {
             "name": "swaggest/json-diff",
-            "version": "v3.8.2",
+            "version": "v3.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swaggest/json-diff.git",
-                "reference": "d223be0ee90cd6001c21af39573fbc2f600a0bbe"
+                "reference": "bb3e3b4e9d842bb2e48f31ea568d0459968d1d42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/d223be0ee90cd6001c21af39573fbc2f600a0bbe",
-                "reference": "d223be0ee90cd6001c21af39573fbc2f600a0bbe",
+                "url": "https://api.github.com/repos/swaggest/json-diff/zipball/bb3e3b4e9d842bb2e48f31ea568d0459968d1d42",
+                "reference": "bb3e3b4e9d842bb2e48f31ea568d0459968d1d42",
                 "shasum": ""
             },
             "require": {
@@ -3530,7 +3530,7 @@
                 }
             ],
             "description": "JSON diff/rearrange/patch/pointer library for PHP",
-            "time": "2021-09-17T13:39:44+00:00"
+            "time": "2021-09-25T22:09:03+00:00"
         },
         {
             "name": "swaggest/json-schema",
@@ -3585,8 +3585,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3.19",
-        "composer-plugin-api": "^1.1|^2.0"
+        "composer-plugin-api": "^1.1|^2.0",
+        "php": ">=7.3.19"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
