@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea4a4c0b7498ffc05412fd23852b3286",
+    "content-hash": "6ec1e3c58164274785ac3f86e8dd05d5",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -3506,8 +3506,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3.19",
-        "composer-plugin-api": "^1.1|^2.0"
+        "composer-plugin-api": "^1.1|^2.0",
+        "php": ">=7.3.19"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
