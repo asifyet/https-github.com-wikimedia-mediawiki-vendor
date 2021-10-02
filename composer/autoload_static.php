@@ -19,6 +19,7 @@ class ComposerStaticInit_mediawiki_vendor
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '4d945db823e5f6ca6dd83ad1f5fbcc43' => __DIR__ . '/..' . '/wikimedia/relpath/src/RelPath/RelPath.php',
         '6513700b70192b7dfd0e5e9fc8082cf3' => __DIR__ . '/..' . '/wikimedia/relpath/src/Wikimedia/RelPath.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'd336c1eb5013890282b9777aa7fc7478' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/WmfFramework.php',
     );
 
@@ -43,6 +44,7 @@ class ComposerStaticInit_mediawiki_vendor
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
@@ -164,6 +166,10 @@ class ComposerStaticInit_mediawiki_vendor
         'WikiPEG\\' => 
         array (
             0 => __DIR__ . '/..' . '/wikimedia/wikipeg/src',
+        ),
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
         'Symfony\\Polyfill\\Php72\\' => 
         array (
@@ -410,6 +416,7 @@ class ComposerStaticInit_mediawiki_vendor
         'AstroPayMethodCodec' => __DIR__ . '/../..' . '/extensions/DonationInterface/astropay_gateway/AstroPayMethodCodec.php',
         'AstroPaySignature' => __DIR__ . '/../..' . '/extensions/DonationInterface/astropay_gateway/AstroPaySignature.php',
         'AstroPayStatusQuery' => __DIR__ . '/../..' . '/extensions/DonationInterface/astropay_gateway/scripts/status.php',
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BannerHistoryLogIdProcessor' => __DIR__ . '/../..' . '/extensions/DonationInterface/extras/banner_history/BannerHistoryLogIdProcessor.php',
         'BlankAddressFields' => __DIR__ . '/../..' . '/extensions/DonationInterface/adyen_gateway/BlankAddressFields.php',
         'CLDRPluralRuleParser\\Converter' => __DIR__ . '/..' . '/wikimedia/cldr-plural-rule-parser/src/Converter.php',
@@ -2581,6 +2588,7 @@ class ComposerStaticInit_mediawiki_vendor
         'SmashPig\\Tests\\TestingQueueConsumer' => __DIR__ . '/..' . '/wikimedia/smash-pig/Tests/TestingQueueConsumer.php',
         'StagingHelper' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/StagingHelper.php',
         'StreetAddress' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/StreetAddress.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Subdivisions' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_forms/includes/Subdivisions.php',
         'Symfony\\Component\\EventDispatcher\\ContainerAwareEventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/ContainerAwareEventDispatcher.php',
         'Symfony\\Component\\EventDispatcher\\Debug\\TraceableEventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php',
@@ -2670,6 +2678,7 @@ class ComposerStaticInit_mediawiki_vendor
         'Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
         'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
         'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
+        'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'System' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/System.php',
         'Twig_Autoloader' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Autoloader.php',
         'Twig_BaseNodeVisitor' => __DIR__ . '/..' . '/twig/twig/lib/Twig/BaseNodeVisitor.php',
@@ -2857,11 +2866,13 @@ class ComposerStaticInit_mediawiki_vendor
         'Twig_TokenStream' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenStream.php',
         'Twig_Util_DeprecationCollector' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Util/DeprecationCollector.php',
         'Twig_Util_TemplateDirIterator' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Util/TemplateDirIterator.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'UnstagingHelper' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/UnstagingHelper.php',
         'UtfNormal\\Constants' => __DIR__ . '/..' . '/wikimedia/utfnormal/src/Constants.php',
         'UtfNormal\\Utils' => __DIR__ . '/..' . '/wikimedia/utfnormal/src/Util.php',
         'UtfNormal\\Validator' => __DIR__ . '/..' . '/wikimedia/utfnormal/src/Validator.php',
         'ValidationHelper' => __DIR__ . '/../..' . '/extensions/DonationInterface/gateway_common/ValidationHelper.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'WikiPEG\\DefaultTracer' => __DIR__ . '/..' . '/wikimedia/wikipeg/src/DefaultTracer.php',
         'WikiPEG\\Expectation' => __DIR__ . '/..' . '/wikimedia/wikipeg/src/Expectation.php',
         'WikiPEG\\InternalError' => __DIR__ . '/..' . '/wikimedia/wikipeg/src/InternalError.php',

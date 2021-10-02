@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '23d0ffac66d1cf36012227cdd76e5e142bc1ef31',
+    'reference' => 'e9ca8de6fa866f2eb69e7f04d351526a00b39a99',
     'name' => 'mediawiki/core',
   ),
   'versions' => 
@@ -195,13 +195,13 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '23d0ffac66d1cf36012227cdd76e5e142bc1ef31',
+      'reference' => 'e9ca8de6fa866f2eb69e7f04d351526a00b39a99',
     ),
     'mediawiki/mediawiki' => 
     array (
       'provided' => 
       array (
-        0 => '1.35.3',
+        0 => '1.35.4',
       ),
     ),
     'monolog/monolog' => 
@@ -493,6 +493,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9',
+    ),
+    'symfony/polyfill-php80' => 
+    array (
+      'pretty_version' => 'v1.23.1',
+      'version' => '1.23.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1100343ed1a92e3a38f9ae122fc0eb21602547be',
     ),
     'symfony/yaml' => 
     array (
