@@ -710,12 +710,12 @@ private static $installed = array (
     ),
     'wikimedia/smash-pig' => 
     array (
-      'pretty_version' => 'v0.7.3.1',
-      'version' => '0.7.3.1',
+      'pretty_version' => 'v0.7.3.3',
+      'version' => '0.7.3.3',
       'aliases' => 
       array (
       ),
-      'reference' => 'b39b63ab37e362bf03f835123f059b0fc4f993b2',
+      'reference' => '8749bb128151691395a964a9fd0bd0984123af5b',
     ),
     'wikimedia/timestamp' => 
     array (
