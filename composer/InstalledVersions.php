@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e9ca8de6fa866f2eb69e7f04d351526a00b39a99',
+    'reference' => 'b329d2dea2cff43c3a618944f4e1427b86aed644',
     'name' => 'mediawiki/core',
   ),
   'versions' => 
@@ -195,7 +195,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e9ca8de6fa866f2eb69e7f04d351526a00b39a99',
+      'reference' => 'b329d2dea2cff43c3a618944f4e1427b86aed644',
     ),
     'mediawiki/mediawiki' => 
     array (
@@ -710,12 +710,12 @@ private static $installed = array (
     ),
     'wikimedia/smash-pig' => 
     array (
-      'pretty_version' => 'v0.7.3.3',
-      'version' => '0.7.3.3',
+      'pretty_version' => 'v0.7.4',
+      'version' => '0.7.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8749bb128151691395a964a9fd0bd0984123af5b',
+      'reference' => '648cc089f36102563e56ce7e1ed321d16fe95522',
     ),
     'wikimedia/timestamp' => 
     array (
